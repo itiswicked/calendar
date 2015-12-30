@@ -1,3 +1,71 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// VARIABLES
+
+$basic-border: 1px solid gray;
+$indicator-border-radius: 10px;
+
+// GLOBAL THINGS
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+// NAV
+nav {
+  padding-top: 5px;
+  text-align: center;
+  height: 40px;
+}
+
+// GENERAL
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 85%;
+  margin: 0 auto;
+
+}
+
+// DAY LABELS TOP ROW
+.day-labels td {
+  text-align: center;
+}
+
+// CALENDER CELLS
+.cal_body td {
+  height: 75px;
+  // border: $basic-border;
+  padding: 0;
+}
+
+.cell {
+  height: 90%;
+  width: 90%;
+  border: $basic-border;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.indicator {
+  margin: 0 auto;
+  height: 10px;
+  width: 10px;
+  border: 2px solid gray;
+  -webkit-border-radius: $indicator-border-radius;
+  -moz-border-radius: $indicator-border-radius;
+  border-radius: $indicator-border-radius;
+}
+
+.date {
+  margin-top: 10px;
+  margin-bottom: 2px;
+  font-size: 20px;
+}
