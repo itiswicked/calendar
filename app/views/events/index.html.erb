@@ -16,7 +16,7 @@
   </tr>
 </table>
 
-<table class="cal_body">
+<table class='cal-body'>
   <tr>
     <td>
       <div class='cell'>
@@ -152,6 +152,8 @@
       </div>
     </td>
   </tr>
+
+  <%= render 'day' if params[:action] == 'show' %>
 
   <tr>
     <td>
