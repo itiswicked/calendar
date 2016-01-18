@@ -12,10 +12,9 @@ feature 'user creates account' do
 # [x] This link leads to a form that user fill out to create an account.
 # [x] Fields included should be a first name, last name, email address,
 #     password, and password confirmation.
-# [ ] Upon successful submission, a user is sees to their own calendar.
-# [ ] Upon unsuccessful submission, a user is directed the form again, with
+# [x] Upon successful submission, a user is sees to their own calendar.
+# [x] Upon unsuccessful submission, a user is directed to the form again, with
 #     appropriate errors displayed.
-# [ ] Username must be unique.
 
   before(:each) { visit new_user_registration_path }
 

@@ -13,5 +13,6 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.username = auth.info.name
       user.avatar_url = auth.info.image
+    end
   end
 end
