@@ -1,14 +1,9 @@
 ## Launch Calendar
+[![Codeship Status for itiswicked/calendar](https://codeship.com/projects/c6995f40-a05e-0133-34ce-6af23f5d89a3/status?branch=master)](https://codeship.com/projects/128163)
+[![Code Climate](https://codeclimate.com/github/itiswicked/calendar/badges/gpa.svg)](https://codeclimate.com/github/itiswicked/calendar)
+[![Coverage Status](https://coveralls.io/repos/github/itiswicked/calendar/badge.svg?branch=make_some_html_happen)](https://coveralls.io/github/itiswicked/calendar?branch=make_some_html_happen)
 
 This is my final project for Launch Academy.
-
-It is an events/physical resources calendar will help aid a large institution in planning their events. It will have a great many one page-like features, thus the client-server architecture will be heavily asynchronous.
-
-  - There is always the potential for multiple overlapping events across multiple event spaces.
-  - These events could potentially also have the need for physical resources (think tents, catering equipment, etc).
-  - The user will be allowed to enter a base inventory of all the resources available to them.
-  - From their, they can start to create events, and assign these resources to events(in other words, checking them out of inventory for the time period of the event).
-  - The application will respond with feedback if their is a resource conflict for a particular time frame.
 
 
 ### Use

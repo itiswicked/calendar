@@ -8,6 +8,8 @@ end
 require 'spec_helper'
 require 'rspec/rails'
 require 'database_cleaner'
+require 'coveralls'
+
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -26,3 +28,5 @@ end
 
 include Warden::Test::Helpers
 Warden.test_mode!
+
+Coveralls.wear!('rails')
