@@ -27,6 +27,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'dotenv'
+  gem 'coveralls', require: false
 end
 
 gem 'rails_12factor', group: :production
