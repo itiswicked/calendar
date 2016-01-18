@@ -10,4 +10,6 @@ Devise.setup do |config|
   config.password_length = 8..72
   config.reset_password_within = 6.hours
   config.sign_out_via = :delete
+
+  config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
 end
