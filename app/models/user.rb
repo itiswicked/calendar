@@ -8,11 +8,13 @@ class User < ActiveRecord::Base
     uid = auth.uid
 
     find_or_create_by(provider: provider, uid: uid) do |user|
+      name = auth.info.name.split(' ')
+      user.first_name = name[0]
+      user.last_name = name[1]
       user.provider = provider
       user.uid = uid
-      user.email = auth.info.email
-      user.username = auth.info.name
-      user.avatar_url = auth.info.image
+      user.email = auth.info.email || ""
+      user.username = auth.info.nickname
     end
   end
 end
