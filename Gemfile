@@ -25,6 +25,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'poltergeist'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'capybara'
