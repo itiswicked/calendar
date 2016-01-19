@@ -26,7 +26,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
-  gem 'dotenv'
+  gem 'dotenv-rails'
   gem 'coveralls', require: false
 end
 
