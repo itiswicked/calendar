@@ -19,7 +19,10 @@ group :development do
   gem 'spring'
 end
 
-gem 'database_cleaner', group: :test
+group :test do
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+end
 
 group :development, :test do
   gem 'pry-rails'
