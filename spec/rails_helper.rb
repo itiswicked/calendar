@@ -10,9 +10,11 @@ require 'rspec/rails'
 require 'database_cleaner'
 require 'coveralls'
 require 'support/factories'
-
+require 'capybara/poltergeist'
 
 ActiveRecord::Migration.maintain_test_schema!
+
+Capybara.javascript_driver = :poltergeist
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

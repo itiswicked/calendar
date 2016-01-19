@@ -14,6 +14,11 @@
       <span>
         <%= link_to 'Log Out', destroy_user_session_path, method: 'delete' %>
       </span>
+      <span>
+        <%= form_tag("/users", method: "delete") do %>
+          <%= submit_tag "Cancel Account" %>
+        <% end %>
+      </span>
     <% else %>
       <span><%= link_to 'Log In', new_user_session_path %></span>
       <span><%= link_to 'Sign Up', new_user_registration_path %></span>
