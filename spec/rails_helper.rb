@@ -9,6 +9,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'database_cleaner'
 require 'coveralls'
+require 'support/factories'
 
 
 ActiveRecord::Migration.maintain_test_schema!
@@ -24,6 +25,8 @@ RSpec.configure do |config|
   config.before(:each, js: true) { DatabaseCleaner.strategy = :truncation }
   config.before(:each) { DatabaseCleaner.start }
   config.after(:each) { DatabaseCleaner.clean }
+
+  config.include FactoryGirl::Syntax::Methods
 end
 
 include Warden::Test::Helpers
