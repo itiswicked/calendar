@@ -17,7 +17,7 @@ feature 'user cancels account' do
   scenario 'user successfully cancels account, cannot access calendar' do
     user.save
     login_as(user, scope: :user)
-    visit events_path
+    visit months_path
     click_button 'Cancel Account'
     expect(page.current_path).to eq '/'
     expect(page).to have_content "Your account has been successfully cancelled."
