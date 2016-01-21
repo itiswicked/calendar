@@ -24,7 +24,7 @@ feature 'user signs in' do
     fill_in 'Password', with: 'password'
     click_button 'Log In'
 
-    expect(page.current_path).to eq '/events'
+    expect(page.current_path).to eq '/months'
     expect(page).to have_content 'Signed in successfully'
     expect(page).to_not have_content 'Log In'
     expect(page).to_not have_content 'Sign Up'

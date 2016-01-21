@@ -1,0 +1,36 @@
+<nav>
+  <a href='#'><</a>
+  <span><%= @month.name %> <%= @month.year %></span>
+  <a href='#'>></a>
+</nav>
+
+<table class='day-labels'>
+  <tr>
+    <td><span>Sun</span></td>
+    <td><span>Mon</span></td>
+    <td><span>Tue</span></td>
+    <td><span>Wed</span></td>
+    <td><span>Thu</span></td>
+    <td><span>Fri</span></td>
+    <td><span>Sat</span></td>
+  </tr>
+</table>
+
+<table class='cal-body'>
+  <% @month.data.each_slice(7) do |week| %>
+    <tr>
+      <% week.each do |day| %>
+        <td>
+          <div class="cell <%= 'today' if day[:today] %>">
+            <p class='date'><%= day[:date].day %></p>
+            <% if day[:event] %>
+              <div class='indicator filled'></div>
+            <% else %>
+              <div class='indicator'></div>
+            <% end %>
+          </div>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
