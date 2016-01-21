@@ -2,10 +2,12 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    binding.pry
   end
 
-  def show
-    render :index
-  end
+  private
 
+  def date_params
+    params.permit(:day, :month, :year)
+  end
 end

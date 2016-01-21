@@ -22,6 +22,7 @@ feature 'user views days events' do
   scenario 'by clicking on a day in calendar' do
     login_as(user, scope: :user)
     visit months_path
+save_and_open_page
     click_link event.start_time.day
 
     expect(page).to have_content event.title
