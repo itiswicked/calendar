@@ -16,7 +16,7 @@ feature 'user views month' do
   let!(:user) { FactoryGirl.create(:user) }
 
   10.times do |n|
-    let!("january_event#{n}".to_sym) {FactoryGirl.create(:january_event) }
+    let!("event#{n}".to_sym) {FactoryGirl.create(:event) }
   end
 
   before(:each) do
@@ -31,9 +31,15 @@ feature 'user views month' do
   scenario 'and sees filled dots to indicate which days have events' do
     dates = [8, 11, 13, 15, 17, 18]
     dates
-      .map { |n| page.find(:xpath, "//p[.='#{n}']") }
-      .each { |element| }# expect sibling div to contain class filled
-    binding.pry
+      .map { |n| page.find(:xpath, "//div[p[.='#{n}']]") }
+      .each { |element| expect(element.has_css?(".filled")).to be true }
+  end
+
+  scenario 'and sees what day it is' do
+    day = Time.now.day
+    element = page.find(:xpath, "//div[contains(concat(' ', normalize-space(@class), ' '), ' today ')]")
+
+    expect(element.text).to eq day.to_s
   end
 
 end

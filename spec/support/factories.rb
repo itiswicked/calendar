@@ -1,5 +1,14 @@
-date_times = [8, 11, 13, 15, 17, 18].map do |n|
-  t = Time.new(2016, 1, n)
+dates = [
+  8, 11, 13, 15, 17, 18,
+  8, 11, 13, 15, 17, 18,
+  8, 11, 13, 15, 17, 18,
+  8, 11, 13, 15, 17, 18,
+  8, 11, 13, 15, 17, 18,
+  8, 11, 13, 15, 17, 18,
+  8, 11, 13, 15, 17, 18,
+  8, 11, 13, 15, 17, 18,
+].map do |n|
+  t = Time.new(Time.now.year, Time.now.month, n)
   { start_time: t.to_s, end_time: (t + (60 * 60 * 11)).to_s }
 end
 
@@ -12,10 +21,10 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
-  factory :january_event, class: Event do
+  factory :event, class: Event do
     sequence(:title) { |n| "Event#{n}" }
     sequence(:description) { |n| "Description#{n}" }
-    sequence(:start_time) { |n| date_times[n][:start_time] }
-    sequence(:end_time) { |n| date_times[n][:end_time] }
+    sequence(:start_time) { |n| dates[n][:start_time] }
+    sequence(:end_time) { |n| dates[n][:end_time] }
   end
 end
