@@ -7,9 +7,9 @@ feature 'user views other months' do
 # so that I can look ahead in time and behind
 #
 # Acceptance Criteria
-# [ ] A user will see left pointing arrow at the top of the page for navigating
+# [x] A user will see left pointing arrow at the top of the page for navigating
 #     to previous month.
-# [ ] A user will see right pointing arrow at the top of the page for navigating
+# [x] A user will see right pointing arrow at the top of the page for navigating
 #     to the next month.
 # [ ] These navigation elements ideally will not illicit another page load,
 #     but rather JS will repopulate the page with the correct info.

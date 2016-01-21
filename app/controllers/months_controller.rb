@@ -18,9 +18,7 @@ class MonthsController < ApplicationController
     events.select { |event| event.start_time.day == date.day }.any?
   end
 
-
   def month_params
     params.permit(:year, :month)
-    # { year: params[:year], month: params[:month] }
   end
 end
