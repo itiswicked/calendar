@@ -1,8 +1,8 @@
 class Month
   attr_reader :month, :year, :data
-  def initialize(year, month)
-    @month = month.to_i
-    @year = year.to_i
+  def initialize(info_hash)
+    @month = (info_hash[:month] || Time.now.month).to_i
+    @year = (info_hash[:year] || Time.now.year).to_i
   end
 
   def create!
@@ -14,17 +14,12 @@ class Month
       .flatten
   end
 
-  def last_month
+  def last_m
     jump_month(:-)
   end
 
-  def next_month
+  def next_m
     jump_month(:+)
-  end
-
-  def jump_month(operator)
-    t = time_obj.send(operator, 1.month)
-    Month.new(t.year, t.month)
   end
 
   def num_of_days
@@ -58,27 +53,29 @@ class Month
       Time.new(@year,@month, 1)
     end
 
+    def jump_month(operator)
+      t = time_obj.send(operator, 1.month)
+      Month.new(year: t.year, month: t.month)
+    end
+
     def prepend_month
-      (1..last_month.num_of_days)
+      (1..last_m.num_of_days)
         .to_a
         .last(weekday_of_first)
         .map do |n|
           {
-            date: Time.new(last_month.year, last_month.month, n),
+            date: Time.new(last_m.year, last_m.month, n),
             in_month: false
           }
         end
     end
 
     def append_month
-      (1..next_month.num_of_days)
+      (1..next_m.num_of_days)
         .to_a
         .first(6 - weekday_of_last)
         .map do |n|
-          {
-            date: Time.new(next_month.year, next_month.month, n),
-            in_month: false
-          }
+          { date: Time.new(next_m.year, next_m.month, n), in_month: false }
         end
     end
 end
