@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     root 'devise/sessions#new'
   end
 
-  resources :months
+  resources :events
+  resources :months, only: [:index]
 end

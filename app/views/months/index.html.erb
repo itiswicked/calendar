@@ -24,12 +24,13 @@
       <% week.each do |day| %>
         <td>
           <div class="cell <%= 'today' if day[:today] %>">
-            <p class='date'><%= day[:date].day %></p>
-            <% if day[:event] %>
-              <div class='indicator filled'></div>
-            <% else %>
-              <div class='indicator'></div>
-            <% end %>
+            <%= link_to day[:date].day, events_path(
+                day: day[:date].day,
+                month: day[:date].month,
+                year: day[:date].year
+              )
+              %>
+            <div class='indicator <%= 'filled' if day[:event] %>'></div>
           </div>
         </td>
       <% end %>

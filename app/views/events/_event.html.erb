@@ -1,3 +1,11 @@
 <div class='event'>
-  
+  <li>
+    <h3><%= link_to event.title, event_path(event) %></h3>
+    <p><%= event.description %></p>
+    <span><%= event.start_time %></span>
+    <br>
+    <span><%= event.end_time %></span>
+    <br>
+  </li>
 </div>
+<br>
