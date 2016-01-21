@@ -21,7 +21,7 @@
     <tr>
       <% week.each do |day| %>
         <td>
-          <div class='cell'>
+          <div class="cell <%= 'today' if day[:today] %>">
             <p class='date'><%= day[:date].day %></p>
             <% if day[:event] %>
               <div class='indicator filled'></div>

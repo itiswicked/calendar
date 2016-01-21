@@ -14,9 +14,9 @@ $basic-border: 1px solid $color;
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
 }
 
 // GLOBAL THINGS
@@ -82,15 +82,15 @@ table {
   background-color: black;
 }
 
-.event-true {
-  background-color: $color;
-}
-
 .date {
   padding-top: 8px;
   margin-top: 0;
   margin-bottom: 2px;
   font-size: 20px;
+}
+
+.today {
+  border: 2px solid black;
 }
 
 // DAY PANE (ah ah ahhhhh! Fighter of the night pane!)
