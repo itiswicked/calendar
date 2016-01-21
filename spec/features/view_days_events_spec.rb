@@ -19,13 +19,22 @@ feature 'user views days events' do
   let!(:user) { FactoryGirl.create(:user) }
   let!(:event) { FactoryGirl.create(:event) }
 
-  scenario 'by clicking on a day in calendar' do
+  before(:each) do
     login_as(user, scope: :user)
     visit months_path
-save_and_open_page
     click_link event.start_time.day
+  end
 
+  after(:each) do
     expect(page).to have_content event.title
     expect(page).to have_content event.description
+  end
+
+  scenario 'by clicking on a day in calendar' do
+  end
+
+  scenario 'can also view individual even\'ts event page' do
+    click_link event.title
+    expect(page.current_path).to eq "/events/#{event.id}"
   end
 end

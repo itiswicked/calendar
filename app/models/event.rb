@@ -6,7 +6,10 @@ class Event < ActiveRecord::Base
   end
 
   def self.find_by_date(date)
-    start_date = "#{date[:year]}-#{date[:month]}-#{date[:day]}"
-    where("start_time = ?", start_date)
+    where("start_time = ?", date)
+  end
+
+  def to_partial_path
+    'events/event'
   end
 end
