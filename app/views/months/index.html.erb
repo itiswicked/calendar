@@ -1,7 +1,9 @@
 <nav>
-  <a href='#'><</a>
+
+
+  <%= link_to 'Last', request.params.merge(month: @month.last_m.month, year: @month.last_m.year) %>
   <span><%= @month.name %> <%= @month.year %></span>
-  <a href='#'>></a>
+  <%= link_to 'Next', request.params.merge(month: @month.next_m.month, year: @month.next_m.year) %>
 </nav>
 
 <table class='day-labels'>
