@@ -1,0 +1,19 @@
+<%= form_for @event do |f| %>
+  <% if @date %>
+    <%= f.hidden_field :date, value: @date.to_time %>
+  <% end %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <br>
+  <%= f.label :start_time, 'Start Time' %>
+  <%= f.datetime_local_field :start_time %>
+  <br>
+  <%= f.label :end_time, 'End Time' %>
+  <%= f.datetime_local_field :end_time %>
+  <br>
+  <%= f.submit 'Create' %>
+<% end %>

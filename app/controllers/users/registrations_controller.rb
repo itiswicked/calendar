@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   protected
-    def after_sign_up_path_for(resource)
+    def after_sign_up_path_for
       months_path
     end
 
@@ -8,7 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       signed_in_root_path(resource)
     end
 
-    def after_sign_out_path(resource)
+    def after_sign_out_path
       '/'
     end
 end
