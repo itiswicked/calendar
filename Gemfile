@@ -13,6 +13,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'validates_timeliness', '~> 4.0'
+gem 'time_splitter'
 
 group :development do
   gem 'web-console', '~> 2.0'

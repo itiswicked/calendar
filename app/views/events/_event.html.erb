@@ -6,6 +6,8 @@
     <br>
     <span><%= event.end_time %></span>
     <br>
+    <%= link_to 'Edit', edit_event_path(event) %>
+    <%= link_to 'Delete', event_path(event), method: :delete %>
   </li>
 </div>
 <br>

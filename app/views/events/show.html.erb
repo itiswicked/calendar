@@ -3,4 +3,6 @@
 <span><%= @event.start_time %></span>
 <br>
 <span><%= @event.end_time %></span>
+<%= link_to 'Edit', edit_event_path(@event) %>
+<%= link_to 'Delete', event_path(@event), method: :delete %>
 <br>
