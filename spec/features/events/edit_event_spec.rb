@@ -42,6 +42,6 @@ feature 'user edits events' do
     click_button 'Create'
 
     expect(page).to have_content 'GE Conference'
-    expect(page.current_path).to eq "/events/1"
+    expect(page.current_path).to eq "/events/#{event.id}"
   end
 end
