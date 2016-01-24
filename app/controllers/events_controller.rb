@@ -9,6 +9,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @categories = InventoryItem.categories
+    @resources = @event.resources
   end
 
   def create

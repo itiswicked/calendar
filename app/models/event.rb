@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
-  validates :title, presence: true
+  has_many :resources
+  has_many :inventory_items, through: :resources
 
+  validates :title, presence: true
   validates_datetime :start_time, before: :end_time,
                      before_message: 'Sorry, you can\'t create an event that ends before it starts.'
   validates_datetime :end_time, after: :start_time,
