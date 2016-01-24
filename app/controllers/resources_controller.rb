@@ -15,6 +15,24 @@ class ResourcesController < ApplicationController
     end
   end
 
+  def edit
+    @resource = Resource.find(params[:id])
+    @event = @resource.event
+    @categories_select = InventoryItem.categories_select
+  end
+
+  def update
+    @resource = Resource.find(params[:id])
+    if @resource.update_attributes(resource_params)
+      redirect_to @resource.event
+    else
+      flash[:alert] = @resource.errors.full_messages.join(", ")
+      @event = @resource.event
+      @categories_select = InventoryItem.categories_select
+      render :edit
+    end
+  end
+
   private
 
   def resource_params
