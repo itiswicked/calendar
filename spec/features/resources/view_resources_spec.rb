@@ -27,7 +27,6 @@ feature 'user view resources' do
 
   scenario 'when visit event show page' do
     visit event_path(event)
-save_and_open_page
     event.resources.each do |resource|
       expect(page).to have_content resource.inventory_item.name
     end

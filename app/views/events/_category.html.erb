@@ -3,7 +3,6 @@
 <ul>
   <% @resources.select { |resource| resource.inventory_item.category == category }.each do |resource| %>
     <li>
-      <% binding.pry %>
       <span><%= resource.inventory_item.name %></span>
       <br>
       <span><%= resource.quantity %></span>

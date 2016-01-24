@@ -1,5 +1,5 @@
 def dates
-  [8, 11, 13, 15, 17, 18].map do |n|
+  ([8, 11, 13, 15, 17, 18] * 20).map do |n|
     t = Time.new(Time.now.year, Time.now.month, n)
     { start_time: t.to_s, end_time: (t + (60 * 60 * 11)).to_s }
   end
