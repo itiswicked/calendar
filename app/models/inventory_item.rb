@@ -17,8 +17,4 @@ class InventoryItem < ActiveRecord::Base
   def self.categories
     select(:category).map(&:category).uniq
   end
-
-  def categorized_items(items)
-
-  end
 end
