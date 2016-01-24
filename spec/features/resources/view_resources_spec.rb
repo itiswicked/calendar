@@ -31,5 +31,4 @@ feature 'user view resources' do
       expect(page).to have_content resource.inventory_item.name
     end
   end
-
 end

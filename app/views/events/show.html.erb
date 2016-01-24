@@ -7,6 +7,21 @@
 <%= link_to 'Delete', event_path(@event), method: :delete %>
 <br>
 
+<h3>Add new Resource</h3>
+
+<%= form_for [@event, @resource] do |f| %>
+  <%= f.label :event_id %>
+  <%= f.hidden_field :event_id, value: @event.id %>
+
+  <%= f.label :inventory_item_id, 'Item' %>
+  <%= f.select :inventory_item_id, grouped_options_for_select(@categories_select) %>
+
+  <%= f.label :quantity %>
+  <%= f.text_field :quantity %>
+
+  <%= f.submit 'Add' %>
+<% end %>
+
 <% @categories.each do |category| %>
   <h3><%= category %></h3>
 
