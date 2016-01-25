@@ -1,39 +1,40 @@
-<nav>
-
-
+<dl class="sub-nav">
   <%= link_to 'Last', request.params.merge(month: @month.last_m.month, year: @month.last_m.year) %>
   <span><%= @month.name %> <%= @month.year %></span>
   <%= link_to 'Next', request.params.merge(month: @month.next_m.month, year: @month.next_m.year) %>
-</nav>
-
-<table class='day-labels'>
-  <tr>
-    <td><span>Sun</span></td>
-    <td><span>Mon</span></td>
-    <td><span>Tue</span></td>
-    <td><span>Wed</span></td>
-    <td><span>Thu</span></td>
-    <td><span>Fri</span></td>
-    <td><span>Sat</span></td>
-  </tr>
-</table>
+</dl>
 
 <table class='cal-body'>
-  <% @month.data.each_slice(7) do |week| %>
+  <thead>
+    <tr>
+      <th>Sun</th>
+      <th>Mon</th>
+      <th>Tue</th>
+      <th>Wed</th>
+      <th>Thu</th>
+      <th>Fri</th>
+      <th>Sat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @month.data.each_slice(7) do |week| %>
     <tr>
       <% week.each do |day| %>
-        <td>
-          <div class="cell <%= 'today' if day[:today] %>">
+      <td>
+        <div class="cell <%= 'today' if day[:today] %>">
+          <p>
             <%= link_to day[:date].day, events_path(
-                day: day[:date].day,
-                month: day[:date].month,
-                year: day[:date].year
-              )
-              %>
-            <div class='indicator <%= 'filled' if day[:event] %>'></div>
-          </div>
-        </td>
+                  day: day[:date].day,
+                  month: day[:date].month,
+                  year: day[:date].year
+                )
+            %>
+          </p>
+          <div class='indicator <%= 'filled' if day[:event] %>'></div>
+        </div>
+      </td>
       <% end %>
     </tr>
-  <% end %>
+    <% end %>
+  </tbody>
 </table>

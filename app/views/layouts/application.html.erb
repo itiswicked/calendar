@@ -1,33 +1,50 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Calendar</title>
-  <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Open+Sans' %>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <nav>
-    <span>EventCal</span>
-    <% if current_user %>
-      <span>
-        <%= link_to 'Log Out', destroy_user_session_path, method: 'delete' %>
-      </span>
-      <span>
-        <%= form_tag("/users", method: "delete") do %>
-          <%= submit_tag "Cancel Account" %>
-        <% end %>
-      </span>
-    <% else %>
-      <span><%= link_to 'Log In', new_user_session_path %></span>
-      <span><%= link_to 'Sign Up', new_user_registration_path %></span>
-    <% end %>
-  </nav>
-  <%= notice if notice %>
-  <%= alert if alert %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <%= yield %>
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
-</body>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1><%= link_to 'EventCal', months_path %></h1>
+        </li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <% if current_user %>
+            <li><%= link_to "Calendar", months_path %></li>
+            <li><%= link_to "New Event", new_event_path %></li>
+            <li class="has-dropdown active">
+              <%= link_to current_user.identifier, "#" %>
+              <ul class="dropdown">
+                <li class="divider">
+                  <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+                </li>
+                <li class="divider">
+                  <%= link_to 'Cancel Account', user_registration_path, method: :delete %>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+            <li class="active"><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <li><%= link_to 'Log In', new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </section>
+    </nav>
+    <%= notice if notice %>
+    <%= alert if alert %>
+
+    <%= yield %>
+
+  </body>
 </html>
