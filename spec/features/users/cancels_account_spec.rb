@@ -18,7 +18,7 @@ feature 'user cancels account' do
     user.save
     login_as(user, scope: :user)
     visit months_path
-    click_button 'Cancel Account'
+    click_link 'Cancel Account'
     expect(page.current_path).to eq '/'
     expect(page).to have_content "Your account has been successfully cancelled."
 

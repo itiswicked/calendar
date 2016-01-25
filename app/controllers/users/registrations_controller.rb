@@ -8,7 +8,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       signed_in_root_path(resource)
     end
 
-    def after_sign_out_path
-      '/'
+    def after_sign_out_path_for(resource)
+      root_path
     end
+
 end
