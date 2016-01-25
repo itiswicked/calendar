@@ -21,6 +21,7 @@
         <br>
         <span>Quantity: <%= resource.quantity %></span>
         <%= link_to 'Edit', edit_event_resource_path(@event, resource) %>
+        <%= link_to 'Delete', event_resource_path(@event, resource), method: :delete %>
       </li>
     <% end %>
   </ul>
