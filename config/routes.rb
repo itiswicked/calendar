@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   resources :events
   resources :months, only: [:index]
   resources :events do
-    resources :resources, only: [:create, :edit, :update]
+    resources :resources, only: [:create, :edit, :update, :destroy]
   end
 end
