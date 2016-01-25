@@ -22,7 +22,7 @@ feature 'user signs in' do
   scenario 'is successful' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'password'
-    click_button 'Log In'
+    click_button 'Log in'
 
     expect(page.current_path).to eq '/months'
     expect(page).to have_content 'Signed in successfully'
@@ -33,7 +33,7 @@ feature 'user signs in' do
   scenario 'has incorrect email or password' do
     fill_in 'Email', with: 'incorrect_email@mail.com'
     fill_in 'Password', with: 'incorrect_password'
-    click_button 'Log In'
+    click_button 'Log in'
 
     expect(page.current_path).to eq '/users/sign_in'
     expect(page).to have_content "Invalid email or password."

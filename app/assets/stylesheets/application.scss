@@ -96,3 +96,25 @@
    height: 100px;
    width: 100px;
  }
+
+ // SPLASH
+.splash {
+  background-image: image-url("splash_3.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100%;
+}
+
+.login-form {
+  margin: auto;
+  padding: 15px;
+  background-color: white;
+  width: 500px;
+  @include border-radius(10px);
+}
+
+.splash-title {
+  text-align: center;
+  padding-top: 40px;
+}
