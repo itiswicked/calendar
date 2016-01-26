@@ -39,7 +39,7 @@ feature 'user edits events' do
     fill_in 'Description', with: 'Setup lighting package #1, sound package #2'
     fill_in 'Start Time', with: datetime
     fill_in 'End Time', with: (datetime + 3.hours)
-    click_button 'Create'
+    click_button 'Submit'
 
     expect(page).to have_content 'GE Conference'
     expect(page.current_path).to eq "/events/#{event.id}"

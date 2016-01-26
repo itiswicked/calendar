@@ -127,41 +127,50 @@ table tr td {
 }
 
 // EVENTS
+
+.event-nav {
+  width: 680px;
+  margin: 15px auto 0px auto;
+}
+
+.event-nav h4 {
+  margin: auto 0;
+}
+
+.event-date {
+  padding-left: 15px;
+}
+
 .event-form {
   padding: 15px 25px 15px 25px;
-  width: 55%;
+  width: 680px;
   margin: auto;
   border: 1px solid #DDDDDD;
 }
 
 .event {
-  height: 120px;
-  width: 55%;
+  padding: 10px;
+  width: 680px;
   margin: 10px auto;
   border: 1px solid #DDDDDD;
+  span {
+    color: gray;
+    font-size: 14px;
+  }
 }
 
 .event-buttons {
   float: right;
 }
 
-.event-left {
-  position: absolute;
-  width: 200px;
-  float: left;
-  height: 100%;
-  border: 1px solid red;
+.event-title {
+  margin: 0;
 }
 
-.event-right {
-  position: absolute;
-  width: 200px;
-  height: 100%;
-  border: 1px solid blue;
-  float: left;
+.event-time {
+  margin-top: 10px;
 }
 
-.parent {
-  position: absolute;
-  height: auto;
+.event-descript {
+  color: gray;
 }

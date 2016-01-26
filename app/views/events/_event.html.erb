@@ -1,28 +1,35 @@
 <article class="event">
-  <div class="parent">
-    <div class="event-time event-left">
-      <div>
-        <h4><%= event.start_str %></h4>
-      </div>
-      <div>
-        <h4><%= event.end_str %></h4>
-      </div>
-    </div>
-    <div class="event-right">
-      <div class="row">
-        <div class="row">
-          <div clas="row">
-            <div class="small-6 columns">
-              <h3><%= link_to event.title, event_path(event) %></h3>
-            </div>
-            <div class="small-6 columns">
-              <div class="button-group event-buttons">
-                <%= link_to 'Edit', edit_event_path(event), class: "button secondary tiny" %>
-                <%= link_to 'Delete', event_path(event), method: :delete, class: "button alert tiny" %>
-              </div>
-            </div>
+  <div class="row">
+    <div class="row">
+      <div clas="row">
+        <div class="small-6 columns">
+          <h4 class="event-title"><%= link_to event.title, event_path(event) %><h4>
+        </div>
+        <div class="small-6 columns">
+          <div class="button-group event-buttons">
+            <span class="event-time"><%= event.start_str %> - <%= event.end_str %></span>
+            <%= link_to 'Edit', edit_event_path(event), class: "button secondary tiny" %>
+            <%= link_to 'Delete', event_path(event), method: :delete, class: "button alert tiny" %>
           </div>
         </div>
+      </div>
+    </div>
+    <p class="event-descript">Info: <%= event.description %> </p>
+    <div class="row">
+      <div class="small-2 columns">
+        <span>Lighting: V</span>
+      </div>
+      <div class="small-2 columns">
+        <span>Sound: V</span>
+      </div>
+      <div class="small-2 columns">
+        <span>Scenic: V</span>
+      </div>
+      <div class="small-2 columns">
+        <span>Catering: V</span>
+      </div>
+      <div class="small-2 columns end">
+        <span>Wardrobe: V</span>
       </div>
     </div>
   </div>
