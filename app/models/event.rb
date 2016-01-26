@@ -23,4 +23,19 @@ class Event < ActiveRecord::Base
   def to_partial_path
     'events/event'
   end
+
+  def start_str
+    start_time.strftime(display_time)
+  end
+
+  def end_str
+    end_time.strftime(display_time)
+  end
+
+  private
+
+  def display_time
+    "%l:%M %p"
+  end
+
 end

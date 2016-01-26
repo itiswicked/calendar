@@ -125,3 +125,43 @@ table tr td {
   text-align: center;
   padding-top: 40px;
 }
+
+// EVENTS
+.event-form {
+  padding: 15px 25px 15px 25px;
+  width: 55%;
+  margin: auto;
+  border: 1px solid #DDDDDD;
+}
+
+.event {
+  height: 120px;
+  width: 55%;
+  margin: 10px auto;
+  border: 1px solid #DDDDDD;
+}
+
+.event-buttons {
+  float: right;
+}
+
+.event-left {
+  position: absolute;
+  width: 200px;
+  float: left;
+  height: 100%;
+  border: 1px solid red;
+}
+
+.event-right {
+  position: absolute;
+  width: 200px;
+  height: 100%;
+  border: 1px solid blue;
+  float: left;
+}
+
+.parent {
+  position: absolute;
+  height: auto;
+}

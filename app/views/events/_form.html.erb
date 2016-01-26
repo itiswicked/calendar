@@ -1,19 +1,39 @@
 <%= form_for @event do |f| %>
   <% if @date %>
-    <%= f.hidden_field :date, value: @date.to_time %>
+  <%= f.hidden_field :date, value: @date.to_time %>
   <% end %>
+  <div class="row">
 
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <br>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  <br>
-  <%= f.label :start_time, 'Start Time' %>
-  <%= f.datetime_local_field :start_time %>
-  <br>
-  <%= f.label :end_time, 'End Time' %>
-  <%= f.datetime_local_field :end_time %>
-  <br>
-  <%= f.submit 'Create' %>
+    <div class="row">
+      <div class="small-2 columns">
+        <%= f.label :title %>
+      </div>
+      <div class="small-10 columns">
+        <%= f.text_field :title %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-2 columns">
+        <%= f.label :description %>
+      </div>
+      <div class="small-10 columns">
+        <%= f.text_area :description %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-2 columns">
+        <%= f.label :start_time, 'Start Time' %>
+      </div>
+      <div class="small-4 columns">
+        <%= f.datetime_local_field :start_time %>
+      </div>
+      <div class="small-2 columns">
+        <%= f.label :end_time, 'End Time' %>
+      </div>
+      <div class="small-4 columns">
+        <%= f.datetime_local_field :end_time %>
+      </div>
+    </div>
+  </div>
+  <%= f.submit 'Create', class: "button small radius" %>
 <% end %>

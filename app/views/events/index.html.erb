@@ -1,8 +1,9 @@
 <h2><%= @date.strftime("%A %b %-d, %Y") %></h2>
 
-<span>Create Event</span>
-<%= render 'form' %>
+<div class="event-form">
+  <h3>Create Event</h3>
+  <%= render 'form' %>
+</div>
 
-<ul>
-  <%= render @events %>
-</ul>
+
+<%= render @events %>

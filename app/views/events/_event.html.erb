@@ -1,13 +1,29 @@
-<div class='event'>
-  <li>
-    <h3><%= link_to event.title, event_path(event) %></h3>
-    <p><%= event.description %></p>
-    <span><%= event.start_time %></span>
-    <br>
-    <span><%= event.end_time %></span>
-    <br>
-    <%= link_to 'Edit', edit_event_path(event) %>
-    <%= link_to 'Delete', event_path(event), method: :delete %>
-  </li>
-</div>
-<br>
+<article class="event">
+  <div class="parent">
+    <div class="event-time event-left">
+      <div>
+        <h4><%= event.start_str %></h4>
+      </div>
+      <div>
+        <h4><%= event.end_str %></h4>
+      </div>
+    </div>
+    <div class="event-right">
+      <div class="row">
+        <div class="row">
+          <div clas="row">
+            <div class="small-6 columns">
+              <h3><%= link_to event.title, event_path(event) %></h3>
+            </div>
+            <div class="small-6 columns">
+              <div class="button-group event-buttons">
+                <%= link_to 'Edit', edit_event_path(event), class: "button secondary tiny" %>
+                <%= link_to 'Delete', event_path(event), method: :delete, class: "button alert tiny" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
