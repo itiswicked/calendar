@@ -1,8 +1,24 @@
-<dl class="sub-nav">
-  <%= link_to 'Last', request.params.merge(month: @month.last_m.month, year: @month.last_m.year) %>
-  <span><%= @month.name %> <%= @month.year %></span>
-  <%= link_to 'Next', request.params.merge(month: @month.next_m.month, year: @month.next_m.year) %>
-</dl>
+<nav class='month-view-nav'>
+  <ul class="button-group">
+    <li>
+      <%= link_to '<',
+          request.params.merge(month: @month.last_m.month, year: @month.last_m.year),
+          class: "button small secondary"
+      %>
+    </li>
+    <li>
+      <%= link_to 'This Month', months_path, class: "button small secondary" %>
+    </li>
+    <li>
+      <%= link_to '>',
+          request.params.merge(month: @month.next_m.month, year: @month.next_m.year),
+          class: "button small secondary"
+      %>
+    </li>
+    <li class='month-name'><%= @month.name %> <%= @month.year %></li>
+  </ul>
+</nav>
+
 
 <table class='cal-body'>
   <thead>
@@ -21,15 +37,17 @@
     <tr>
       <% week.each do |day| %>
       <td>
-        <div class="cell <%= 'today' if day[:today] %>">
-          <p>
-            <%= link_to day[:date].day, events_path(
-                  day: day[:date].day,
-                  month: day[:date].month,
-                  year: day[:date].year
-                )
-            %>
-          </p>
+        <div class="cell">
+          <h3 class="date">
+            <div class="<%= 'today' if day[:today] %> <%= 'grayout' unless day[:in_month] %>">
+              <%= link_to day[:date].day, events_path(
+                    day: day[:date].day,
+                    month: day[:date].month,
+                    year: day[:date].year
+                  )
+              %>
+            </div>
+          </h3>
           <div class='indicator <%= 'filled' if day[:event] %>'></div>
         </div>
       </td>

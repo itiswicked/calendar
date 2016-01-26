@@ -3,7 +3,9 @@ class EventsController < ApplicationController
 
   def index
     @date = date
-    @events = Event.find_by_date(@date)
+    @yesterday = yesterday
+    @tomorrow = tomorrow
+    @events = Event.find_by_date(@date).order(:start_time)
     @event = Event.new
   end
 
@@ -60,6 +62,22 @@ class EventsController < ApplicationController
   def date(date_arg = nil)
     return Date.parse(date_arg) if date_arg
     Date.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
+  end
+
+  def yesterday
+    {
+      day: (date - 1.day).day,
+      month: (date - 1.day).month,
+      year:  (date - 1.day).year
+    }
+  end
+
+  def tomorrow
+    {
+      day: (date + 1.day).day,
+      month: (date + 1.day).month,
+      year:  (date + 1.day).year
+    }
   end
 
   def event_params

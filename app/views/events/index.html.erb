@@ -1,8 +1,27 @@
-<h2><%= @date.strftime("%A %b %-d, %Y") %></h2>
+<nav class='event-nav'>
+  <ul class="button-group">
+    <li>
+      <%= link_to '<', events_path(@yesterday), class: "button small secondary" %>
+    </li>
+    <li>
+      <%= link_to 'Today',
+          events_path(month: Time.now.month, day: Time.now.day, year: Time.now.year),
+          class: "button small secondary"
+      %>
+    </li>
+    <li>
+      <%= link_to '>', events_path(@tomorrow), class: "button small secondary" %>
+    </li>
+    <li class='event-date'><h4><%= @date.strftime("%A %b %-d, %Y") %></h4></li>
+  </ul>
+</nav>
 
-<span>Create Event</span>
-<%= render 'form' %>
+<h2></h2>
 
-<ul>
-  <%= render @events %>
-</ul>
+<div class="event-form">
+  <h3>Create Event</h3>
+  <%= render 'form' %>
+</div>
+
+
+<%= render @events %>

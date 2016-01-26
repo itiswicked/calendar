@@ -32,13 +32,13 @@ feature 'user can create events' do
 
     fill_in 'Start Time', with: datetime
     fill_in 'End Time', with: (datetime + 3.hours)
-    click_button 'Create'
+    click_button 'Submit'
 
     expect(page).to have_content 'GE Conference'
   end
 
   scenario 'unsuccessfully due to empty required parameters' do
-    click_button 'Create'
+    click_button 'Submit'
 
     expect(page).to have_content 'Title can\'t be blank'
     expect(page).to have_content 'Start time is not a valid date'
@@ -51,7 +51,7 @@ feature 'user can create events' do
     fill_in 'Description', with: 'Lots o tables and chairs'
     fill_in 'Start Time', with: datetime
     fill_in 'End Time', with: (datetime - 1.hours)
-    click_button 'Create'
+    click_button 'Submit'
 
     expect(page).to have_content 'Sorry, you can\'t create an event that ends before it starts.'
   end
