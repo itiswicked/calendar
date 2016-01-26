@@ -31,7 +31,7 @@ feature 'user views month' do
   scenario 'and sees filled dots to indicate which days have events' do
     dates = [8, 11, 13, 15, 17, 18]
     dates
-      .map { |n| page.find(:xpath, "//div[p[a[.='#{n}']]]") }
+      .map { |n| page.find(:xpath, "//div[h3[div[a[.='#{n}']]]]") }
       .each { |element| expect(element.has_css?(".filled")).to be true }
   end
 
