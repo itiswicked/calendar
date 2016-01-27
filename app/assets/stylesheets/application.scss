@@ -32,16 +32,12 @@ $light-gray-border: 1px solid #DDDDDD;
   border-radius: $radius;
 }
 
-@mixin the-box-shadow {
-  -webkit-box-shadow: 5px 5px 40px rgba(136,136,136,0.8);
-  -moz-box-shadow: 5px 5px 40px rgba(136,136,136,0.8);
-  box-shadow: 5px 5px 40px rgba(136,136,136,0.8);
-  transition: box-shadow 0.3s ease-in-out;
-}
-
 .shadow {
   &:hover {
-    @include the-box-shadow;
+    -webkit-box-shadow: 5px 5px 40px rgba(136,136,136,0.8);
+    -moz-box-shadow: 5px 5px 40px rgba(136,136,136,0.8);
+    box-shadow: 5px 5px 40px rgba(136,136,136,0.8);
+    transition: 0.25s ease-in-out;
   }
 }
 
@@ -194,11 +190,28 @@ $light-gray-border: 1px solid #DDDDDD;
   border: $light-gray-border;
   margin: 10px auto;
   width: 80%;
-  padding: 5px;
+  padding: 10px;
+  p {
+    margin: 0;
+  }
+}
+
+.event-show-banner {
+  position: relative;
+}
+
+.event-show-buttons {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, 25%);
+  li a {
+    margin: 0;
+  }
 }
 
 .event-show-time {
   text-align: center;
+  min-width: 120px;
   p { margin: 5px; }
 }
 
