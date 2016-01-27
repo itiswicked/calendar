@@ -16,9 +16,10 @@ feature 'user deletes resource' do
     login_as(user, scope: :user)
     visit event_path(resource.event)
 
-    within(".resource") do |partial_page|
+    within first("table") do |table|
       click_link 'Delete'
-      expect(partial_page).to_not have_content name
+      expect(table).to_not have_content name
     end
+
   end
 end
