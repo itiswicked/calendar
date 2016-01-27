@@ -1,6 +1,38 @@
-Event.create(
-  title: "Event title",
-  description: "A description",
-  start_time: Time.now,
-  end_time: Time.now + (60 * 60)
-)
+items = [
+  { name: "Source4 PAR NSP", category: "Lighting" },
+  { name: "Source4 PAR MFL", category: "Lighting" },
+  { name: "Source4 PAR WFL", category: "Lighting" },
+  { name: "Source4 PAR VNSP", category: "Lighting" },
+  { name: "Source4 19deg", category: "Lighting" },
+  { name: "Source4 26deg", category: "Lighting" },
+  { name: "Source4 36deg", category: "Lighting" },
+  { name: "Source4 50deg", category: "Lighting" },
+  { name: "Source4 70deg", category: "Lighting" },
+  { name: "SM-58", category: "Sound" },
+  { name:"SM-58b", category: "Sound" },
+  { name: "SM-57", category: "Sound" },
+  { name: "AKG D5", category: "Sound" },
+  { name: "D&B E6", category: "Sound" },
+  { name: "D&B E8", category: "Sound" },
+  { name: "D&B E12", category: "Sound" },
+  { name: "D&B M2", category: "Sound" },
+  { name: "D&B M4", category: "Sound" },
+  { name: "D&B M6", category: "Sound" },
+  { name: "Truss 1x12", category: "Scenic" },
+  { name: "Truss 2x12", category: "Scenic" },
+  { name: "Truss 1x6", category: "Scenic" },
+  { name: "Truss 1xCorner", category: "Scenic" },
+  { name: "4x12 Flat", category: "Scenic" },
+  { name: "4x8 Flat", category: "Scenic" },
+  { name: "Bolt Box", category: "Scenic" },
+  { name: "Steamer", category: "Wardrobe" },
+  { name: "Work Box", category: "Wardrobe" },
+  { name: "Oven", category: "Catering" },
+  { name: "Table 8' Round", category: "Catering" },
+  { name: "Table 4x8", category: "Catering" },
+  { name: "Table 3x6", category: "Catering" },
+  { name: "Oven", category: "Catering" }
+]
+
+
+items.each { |item| InventoryItem.create(item) }

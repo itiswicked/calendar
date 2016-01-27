@@ -31,24 +31,24 @@ feature 'user updates resource' do
   before(:each) do
     login_as(user, scope: :user)
     visit event_path(event)
-    within(".resource") { click_link 'Edit' }
+    within( first("table")) { click_link 'Edit' }
   end
 
   scenario 'successfully' do
     fill_in 'Quantity', with: 50
-    click_button 'Submit'
+    click_button 'Add'
 
-    ul_elements = find_all(:xpath, "//ul")
-    ul_elements.each do |element|
-      expect(element).to_not have_content '4'
-      expect(page).to have_content '50'
+    within(first("table")) do |table|
+      expect(table).to_not have_content '4'
     end
+    expect(page).to have_content '50'
+
     expect(page.current_path).to eq "/events/#{event.id}"
   end
 
   scenario 'unsuccessfully, rerenders edit form' do
     fill_in 'Quantity', with: 'Not a number'
-    click_button 'Submit'
+    click_button 'Add'
 
     expect(page).to have_content "Quantity is not a number"
     expect(page.current_path).to eq "/events/#{event.id}/resources/#{resource.id}"

@@ -24,15 +24,19 @@ feature 'user can add resources to events' do
   end
 
   scenario 'successfully' do
-    select "SM-58", from: 'Item'
-    fill_in 'Quantity', with: 4
-    click_button 'Submit'
+    within first(".resource-category") do
+      select "SM-58", from: 'Resource'
+      fill_in 'Quantity', with: 4
+      click_button 'Add'
+    end
 
     expect(page).to have_content 'SM-58'
   end
 
   scenario 'unsuccessfully, missing quantity' do
-    click_button 'Submit'
+    within first(".resource-category") do
+      click_button 'Add'
+    end
 
     ul_elements = find_all(:xpath, "//ul")
     ul_elements.each { |element| expect(element).to_not have_content 'SM-58' }

@@ -1,14 +1,28 @@
 <%= form_for [@event, @resource] do |f| %>
-  <%= f.label :event_id %>
   <%= f.hidden_field :event_id, value: @event.id %>
+  <div class="row">
+    <div class="small-5 columns">
+      <div class="small-3 columns">
+        <%= f.label :inventory_item_id, 'Resource' %>
 
- <% unless params[:action] == 'edit' %>
-  <%= f.label :inventory_item_id, 'Item' %>
-  <%= f.select :inventory_item_id, grouped_options_for_select(@categories_select) %>
-<% end %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.select :inventory_item_id, grouped_options_for_select(@categories_select) %>
 
-  <%= f.label :quantity %>
-  <%= f.text_field :quantity %>
+      </div>
+    </div>
+    <div class="small-5 columns">
+      <div class="small-3 columns">
+        <%= f.label :quantity %>
 
-  <%= f.submit 'Submit' %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.text_field :quantity %>
+
+      </div>
+    </div>
+    <div class="small-2 columns">
+      <%= f.submit 'Add', class: "button tiny" %>
+    </div>
+  </div>
 <% end %>

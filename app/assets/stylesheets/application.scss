@@ -21,18 +21,28 @@
 $color: black;
 $basic-border: 1px solid $color;
 $month-content-width: 72%;
+$light-gray-border: 1px solid #DDDDDD;
 
 // MIXINS
 
- @mixin border-radius($radius) {
+@mixin border-radius($radius) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
   -ms-border-radius: $radius;
   border-radius: $radius;
- }
+}
+
+.shadow {
+  &:hover {
+    -webkit-box-shadow: 5px 5px 40px rgba(136,136,136,0.8);
+    -moz-box-shadow: 5px 5px 40px rgba(136,136,136,0.8);
+    box-shadow: 5px 5px 40px rgba(136,136,136,0.8);
+    transition: 0.25s ease-in-out;
+  }
+}
 
 // GENERAL
-table {
+.cal-body {
   table-layout: fixed;
   border-collapse: collapse;
   width: $month-content-width;
@@ -51,12 +61,12 @@ table {
   padding-left: 15px;
 }
 
-table tr th {
+.cal-body tr th {
   text-align: center;
 }
 
 // CALENDER CELLS
-table tr td {
+.cal-body tr td {
   padding: 0;
   height: 110px;
   border: 1px solid #DDDDDD;
@@ -116,7 +126,7 @@ table tr td {
 .login-form {
   margin: auto;
   padding: 15px;
-  background-color: white;
+  background-color:rgba(255,255,255,0.8);
   width: 500px;
   @include border-radius(10px);
 }
@@ -144,7 +154,7 @@ table tr td {
 .event-form {
   padding: 15px 25px 15px 25px;
   width: 680px;
-  margin: auto;
+  margin: 10px auto;
   border: 1px solid #DDDDDD;
 }
 
@@ -173,4 +183,68 @@ table tr td {
 
 .event-descript {
   color: gray;
+}
+
+// EVENT SHOW PAGE
+.event-show {
+  border: $light-gray-border;
+  margin: 10px auto;
+  width: 80%;
+  padding: 10px;
+  p {
+    margin: 0;
+  }
+}
+
+.event-show-banner {
+  position: relative;
+}
+
+.event-show-buttons {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, 25%);
+  li a {
+    margin: 0;
+  }
+}
+
+.event-show-time {
+  text-align: center;
+  min-width: 120px;
+  p { margin: 5px; }
+}
+
+// RESOURCES
+.resource-category {
+  padding: 10px 30px;
+  width: 80%;
+  margin: 20px auto;
+  border: $light-gray-border;
+}
+
+.resource-table {
+  width: 100%
+}
+
+td .button {
+  margin: 0;
+}
+
+.resource-column {
+  width: 120px;
+}
+
+.quantity-column {
+  width: 220px;
+  position: relative;
+  span {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+.resource-buttons {
+  float: right;
 }
