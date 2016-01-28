@@ -1,16 +1,22 @@
 <nav class='event-nav'>
   <ul class="button-group">
     <li>
-      <%= link_to '<', events_path(@yesterday), class: "button small secondary" %>
+      <%= link_to '<i class="material-icons">keyboard_arrow_left</i>'.html_safe,
+          events_path(@yesterday),
+          class: "button small secondary arrow"
+      %>
     </li>
     <li>
       <%= link_to 'Today',
           events_path(month: Time.now.month, day: Time.now.day, year: Time.now.year),
-          class: "button small secondary"
+          class: "button small secondary bold"
       %>
     </li>
     <li>
-      <%= link_to '>', events_path(@tomorrow), class: "button small secondary" %>
+      <%= link_to '<i class="material-icons">keyboard_arrow_right</i>'.html_safe,
+          events_path(@tomorrow),
+          class: "button small secondary arrow"
+      %>
     </li>
     <li class='event-date'><h4><%= @date.strftime("%A %b %-d, %Y") %></h4></li>
   </ul>
