@@ -16,3 +16,21 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+$(document).ready(function(){
+  $('a.button.alert.tiny.resource-delete').click(function(event){
+    event.preventDefault();
+    var anchor = $(this);
+    var path = anchor.attr('href');
+
+    $.ajax({
+      method: 'DELETE',
+      type: "json",
+      url: path,
+      success: function(){
+        anchor.parents()[2].remove();
+      }
+    });
+    return false;
+  });
+});

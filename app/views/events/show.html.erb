@@ -53,8 +53,8 @@
                     class: "button secondary tiny"
                 %>
                 <%= link_to 'Delete',
-                    event_resource_path(@event, resource),
-                    method: :delete, class: "button alert tiny"
+                    api_resource_path(resource),
+                    method: :delete, class: "button alert tiny resource-delete"
                 %>
               </div>
             </td>

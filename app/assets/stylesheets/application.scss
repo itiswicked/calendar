@@ -22,8 +22,9 @@ $color: black;
 $basic-border: 1px solid $color;
 $month-content-width: 72%;
 $light-gray-border: 1px solid #DDDDDD;
+$the-enforcer: 35px auto 0px auto;
 
-// MIXINS
+// MIXINS, ETC
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
@@ -38,6 +39,37 @@ $light-gray-border: 1px solid #DDDDDD;
   box-shadow: 1px 1px 5px rgba(136,136,136,0.8);
 }
 
+@mixin translate-arrow-button {
+  height: 45px;
+  padding-top: 11px;
+  padding-bottom: 7px;
+  transform: translate(0, 18%);
+}
+
+@mixin background($filename) {
+  background-image: image-url($filename);
+  background-size: cover;
+  min-height: 100%;
+}
+
+body {
+  background-image: image-url("mooning.png");
+  background-position: center center;
+  background-repeat: repeat;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+html body nav.month-view-nav ul.button-group li a.arrow {
+  @include translate-arrow-button;
+}
+
+html body nav.event-nav ul.button-group li a.arrow {
+  @include translate-arrow-button;
+}
+
 .shadow {
   &:hover {
     -webkit-box-shadow: 5px 5px 20px rgba(136,136,136,0.8);
@@ -47,12 +79,22 @@ $light-gray-border: 1px solid #DDDDDD;
   }
 }
 
+.github-image {
+  color: white;
+  fill: #94d31b;
+}
+
+.page-background {
+
+}
+
 // GENERAL
 .cal-body {
+  margin: 0 auto;
   table-layout: fixed;
   border-collapse: collapse;
   width: $month-content-width;
-  margin: 0 auto;
+  @include the-box-shadow;
 }
 
 .alert-box {
@@ -70,9 +112,8 @@ $light-gray-border: 1px solid #DDDDDD;
 
 // DAY LABELS TOP ROW
 .month-view-nav {
-  padding-top: 15px;
   width: $month-content-width;
-  margin: auto;
+  margin: $the-enforcer;
 }
 
 .month-name {
@@ -132,13 +173,8 @@ $light-gray-border: 1px solid #DDDDDD;
 }
 
 // SPLASH
-
 .splash {
-  background-image: image-url("splash_3.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100%;
+
 }
 
 .login-form {
@@ -158,10 +194,7 @@ $light-gray-border: 1px solid #DDDDDD;
 
 .event-nav {
   width: 70%;
-  margin: 15px auto 0px auto;
-}
-
-.event-nav {
+  margin: $the-enforcer;
   h4 {
     margin: auto 0;
   }
@@ -175,15 +208,17 @@ $light-gray-border: 1px solid #DDDDDD;
 }
 
 .event-form {
+  background-color: white;
   padding: 15px 25px 15px 25px;
   width: 70%;
-  margin: 15px auto 10px auto;
+  margin: 35px auto 10px auto;
   border: $light-gray-border;
   @include border-radius(4px);
   @include the-box-shadow;
 }
 
 .event {
+  background-color: white;
   padding: 10px;
   width: 70%;
   margin: 20px auto;
@@ -198,7 +233,6 @@ $light-gray-border: 1px solid #DDDDDD;
 
 .event-buttons {
   float: right;
-
   a {
     @include the-box-shadow;
     @include border-radius(2px);
@@ -219,8 +253,9 @@ $light-gray-border: 1px solid #DDDDDD;
 
 // EVENT SHOW PAGE
 .event-show {
+  background-color: white;
   border: $light-gray-border;
-  margin: 10px auto;
+  margin: $the-enforcer;
   width: 80%;
   padding: 10px;
   @include border-radius(4px);
@@ -231,13 +266,10 @@ $light-gray-border: 1px solid #DDDDDD;
 }
 
 .event-show-banner {
-  position: relative;
 }
 
 .event-show-buttons {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, 25%);
+  transform: translate(10%, 25%);
   li a {
     @include border-radius(2px);
     @include the-box-shadow;
@@ -253,6 +285,7 @@ $light-gray-border: 1px solid #DDDDDD;
 
 // RESOURCES
 .resource-category {
+  background-color: white;
   padding: 10px 30px;
   width: 80%;
   margin: 20px auto;

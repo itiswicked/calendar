@@ -6,9 +6,10 @@
 
     <title>EventCal.</title>
 
-    <%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons"  %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -53,8 +54,10 @@
         <a href="#" class="close">&times;</a>
       </div>
     <% end %>
-    <div class="the-enforcer"></div>
-    <%= yield %>
+
+    <div class="page-background">
+      <%= yield %>
+    </div>
 
   </body>
 </html>

@@ -1,21 +1,21 @@
 <nav class='month-view-nav'>
   <ul class="button-group">
     <li>
-      <%= link_to '<',
+      <%= link_to '<i class="material-icons">keyboard_arrow_left</i>'.html_safe,
           request.params.merge(month: @month.last_m.month, year: @month.last_m.year),
-          class: "button small secondary"
+          class: "button small secondary arrow"
       %>
     </li>
     <li>
-      <%= link_to 'This Month', months_path, class: "button small secondary" %>
+      <%= link_to 'This Month', months_path, class: "button small secondary bold" %>
     </li>
     <li>
-      <%= link_to '>',
+      <%= link_to '<i class="material-icons">keyboard_arrow_right</i>'.html_safe,
           request.params.merge(month: @month.next_m.month, year: @month.next_m.year),
-          class: "button small secondary"
+          class: "button small secondary arrow"
       %>
     </li>
-    <li class='month-name'><%= @month.name %> <%= @month.year %></li>
+    <li class='month-name'><h4><%= @month.name %> <%= @month.year %></h4></li>
   </ul>
 </nav>
 

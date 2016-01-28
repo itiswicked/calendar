@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   resources :events
   resources :months, only: [:index]
   resources :events do
-    resources :resources, only: [:create, :edit, :update, :destroy]
+    resources :resources, only: [:create, :edit, :update]
+  end
+
+  namespace :api do
+    resources :resources, only: [:destroy]
   end
 end

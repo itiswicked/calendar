@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
 
   def identifier
     return first_name unless first_name.nil? || first_name.empty?
-    return username   unless username.nil? || username.empty?
-    return email      unless username.nil? || username.empty?
+    return username unless username.nil? || username.empty?
+    return email unless username.nil? || username.empty?
     "User"
   end
 end
