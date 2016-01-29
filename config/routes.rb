@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
+    resources :events do
+      resources :resources, only: [:edit, :update]
+    end
     resources :resources, only: [:destroy]
   end
 end
