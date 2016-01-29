@@ -1,4 +1,4 @@
-  class Event < ActiveRecord::Base
+class Event < ActiveRecord::Base
   has_many :resources
   has_many :inventory_items, through: :resources
 
