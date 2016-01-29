@@ -32,10 +32,13 @@ class Event < ActiveRecord::Base
     end_time.strftime(display_time)
   end
 
+  def display_date
+    start_time.strftime("%b %e, %Y")
+  end
+
   private
 
   def display_time
     "%l:%M %p"
   end
-
 end
