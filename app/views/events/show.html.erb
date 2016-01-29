@@ -1,5 +1,6 @@
 <div class="row event-show shadow">
   <div class="medium-2 columns event-show-time">
+    <p> <%= @event.display_date %> </p>
     <p>Start</p>
     <h3><%= @event.start_str %></h3>
     <p>End</p>
@@ -21,6 +22,7 @@
         </ul>
       </div>
     </div>
+    <hr>
     <div class="row">
       <div class="medium-12 columns">
         <p><%= @event.description %></p>

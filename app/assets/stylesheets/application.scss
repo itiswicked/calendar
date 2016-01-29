@@ -84,8 +84,9 @@ html body nav.event-nav ul.button-group li a.arrow {
   fill: #94d31b;
 }
 
-.page-background {
-
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 // GENERAL
@@ -260,6 +261,7 @@ html body nav.event-nav ul.button-group li a.arrow {
   padding: 10px;
   @include border-radius(4px);
   @include the-box-shadow;
+  max-width: none;
   p {
     margin: 0;
   }
