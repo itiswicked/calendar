@@ -6,4 +6,19 @@ class Api::ResourcesController < ApplicationController
     @resource.destroy
     render nothing: true, status: 200, content_type: "text/html"
   end
+
+  def update
+    @resource = Resource.find(params[:id])
+    if @resource.update_attributes(resource_params)
+      render json: @resource
+    else
+      render nothing: true, status: 500, content_type: "text/html"
+    end
+  end
+
+  private
+
+  def resource_params
+    params.require(:resource).permit(:quantity)
+  end
 end
