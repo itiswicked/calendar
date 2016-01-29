@@ -34,9 +34,7 @@ $the-enforcer: 35px auto 0px auto;
 }
 
 @mixin the-box-shadow {
-  -webkit-box-shadow: 1px 1px 5px rgba(136,136,136,0.8);
-  -moz-box-shadow: 1px 1px 5px rgba(136,136,136,0.8);
-  box-shadow: 1px 1px 5px rgba(136,136,136,0.8);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 @mixin translate-arrow-button {
@@ -56,6 +54,7 @@ body {
   background-image: image-url("mooning.png");
   background-position: center center;
   background-repeat: repeat;
+  background-size: auto;
 }
 
 .bold {
@@ -89,9 +88,13 @@ hr {
   margin-bottom: 10px;
 }
 
+.login-buttons {
+  text-align: center;
+}
+
 // GENERAL
 .cal-body {
-  margin: 0 auto;
+  margin: 0 auto 50px auto;
   table-layout: fixed;
   border-collapse: collapse;
   width: $month-content-width;
@@ -103,7 +106,7 @@ hr {
 }
 
 .main-nav-shadow {
-  box-shadow: 7px 7px 20px rgba(136,136,136,1);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.12), 0 8px 12px rgba(0,0,0,0.24);
 }
 
 .the-enforcer {
@@ -179,16 +182,20 @@ hr {
 }
 
 .login-form {
-  margin: auto;
+  margin: 20px auto;
   padding: 15px;
   background-color:rgba(255,255,255,0.8);
-  width: 500px;
-  @include border-radius(3px);
+  width: 450px;
+  @include the-box-shadow;
+  @include border-radius(5px);
+  a, input {
+    margin-bottom: 0;
+  }
 }
 
 .splash-title {
   text-align: center;
-  padding-top: 40px;
+  padding-top: 30px;
 }
 
 // EVENTS

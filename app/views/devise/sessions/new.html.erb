@@ -6,8 +6,6 @@
     <h3>resource-driven event management application.</h3>
   </div>
   <div class="login-form">
-    <h2>Log in</h2>
-
     <%= form_for(resource, arails: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="row">
         <div class="small-12 columns">
@@ -42,8 +40,8 @@
         </div>
       </div>
 
-    <div class="actions">
-      <%= f.submit "Log in", class: "button radius small" %> or
+    <div class="actions button-group login-buttons">
+      <%= f.submit "Log in", class: "button radius small" %>
       <%= link_to "Sign in with Github",
           omniauth_authorize_path(resource_name, "github"),
           class: "button radius small"
