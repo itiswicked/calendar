@@ -17,19 +17,39 @@
     <p class="event-descript"><%= event.description %> </p>
     <div class="row">
       <div class="small-2 columns">
-        <span>Lighting: V</span>
+        <% if event.has_lighting? %>
+          <span>Lighting: <i class="material-icons overview-icon">done</i></span>
+        <% else %>
+          <span>Lighting: <i class="material-icons overview-icon">close</i></span>
+        <% end %>
       </div>
       <div class="small-2 columns">
-        <span>Sound: V</span>
+        <% if event.has_sound? %>
+          <span>Sound: <i class="material-icons overview-icon">done</i></span>
+        <% else %>
+          <span>Sound: <i class="material-icons overview-icon">close</i></span>
+        <% end %>
       </div>
       <div class="small-2 columns">
-        <span>Scenic: V</span>
+        <% if event.has_scenic? %>
+          <span>Scenic: <i class="material-icons overview-icon">done</i></span>
+        <% else %>
+          <span>Scenic: <i class="material-icons overview-icon">close</i></span>
+        <% end %>
       </div>
       <div class="small-2 columns">
-        <span>Catering: V</span>
+        <% if event.has_catering? %>
+          <span>Catering: <i class="material-icons overview-icon">done</i></span>
+        <% else %>
+          <span>Catering: <i class="material-icons overview-icon">close</i></span>
+        <% end %>
       </div>
       <div class="small-2 columns end">
-        <span>Wardrobe: V</span>
+        <% if event.has_wardrobe? %>
+          <span>Wardrobe: <i class="material-icons overview-icon">done</i></span>
+        <% else %>
+          <span>Wardrobe: <i class="material-icons overview-icon">close</i></span>
+        <% end %>
       </div>
     </div>
   </div>

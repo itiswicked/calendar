@@ -1,4 +1,4 @@
-class Event < ActiveRecord::Base
+  class Event < ActiveRecord::Base
   has_many :resources
   has_many :inventory_items, through: :resources
 
@@ -36,9 +36,33 @@ class Event < ActiveRecord::Base
     start_time.strftime("%b %e, %Y")
   end
 
+  def has_sound?
+    has_category?("Sound")
+  end
+
+  def has_lighting?
+    has_category?("Lighting")
+  end
+
+  def has_scenic?
+    has_category?("Scenic")
+  end
+
+  def has_wardrobe?
+    has_category?("Wardrobe")
+  end
+
+  def has_catering?
+    has_category?("Catering")
+  end
+
   private
 
   def display_time
     "%l:%M %p"
+  end
+
+  def has_category?(category)
+    resources.select { |resource| resource.inventory_item.category == category }.any?
   end
 end

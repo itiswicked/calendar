@@ -5,8 +5,8 @@ class EventsController < ApplicationController
     @date = date
     @yesterday = yesterday
     @tomorrow = tomorrow
-    @events = Event.find_by_date(@date).order(:start_time)
     @event = Event.new
+    @events = Event.find_by_date(@date).order(:start_time)
   end
 
   def new
