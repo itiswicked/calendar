@@ -33,15 +33,16 @@ class Month
   private
 
     def create_day(year, month, date)
-      day = {}
-      day[:date] = Time.new(year, month, date)
-      day[:in_month] = in_month? day[:date]
-      day[:today] = is_today? day[:date]
-      day
+      time = Time.new(year, month, date)
+      {
+        date: time,
+        in_month: in_month?(time),
+        today: is_today?(time)
+      }
     end
 
     def time_obj
-      Time.new(@year,@month, 1)
+      Time.new(@year, @month, 1)
     end
 
     def jump_month(operator)
