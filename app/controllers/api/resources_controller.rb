@@ -8,6 +8,7 @@ class Api::ResourcesController < ApplicationController
   end
 
   def update
+binding.pry
     @resource = Resource.find(params[:id])
     if @resource.update_attributes(resource_params)
       render json: @resource

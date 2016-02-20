@@ -21,13 +21,13 @@ var hideEditButtonAndQuant = function(element){
   $(element).parent().parent().children().remove();
 };
 
-var displayEditForm = function(element, default_path, quantity){
-  var api_path = "/api" + default_path.substring(0, path_for_submit.length - 5)
+var displayEditForm = function(element, default_path, quantity, id){
+  var api_path = "/api" + default_path.substring(0, default_path.length - 5)
   $(element).html(
     "<form action='" + api_path + "'>" +
       "<div class='row'>" +
         "<div class='small-6 columns'>" +
-          "<input type='text' value='" + quantity + "' class='resource-quantity-update' style='margin-bottom: 0;'>" +
+          "<input type='text' value='" + quantity + "' id='resource-quantity-update"+ id +"' style='margin-bottom: 0;'>" +
         "</div>" +
         "<div class='small-6 columns'>" +
           "<input type='submit' value='Update' class='button tiny radius resource-update'>" +
@@ -66,12 +66,14 @@ $(document).ready(function(){
 
   $(document).on('click', 'a.button.secondary.tiny.resource-edit', function(event){
     event.preventDefault();
-    cell = $(this).parents()[1]
-    value = $($(this).parents()[1]).children().first().text()
-    path_for_submit = $(this).attr('href')
+    var cell = $(this).parents()[1]
+    var value = $($(this).parents()[1]).children().first().text()
+    var path_for_submit = $(this).attr('href')
+    var id = $(cell).attr("id")
+    debugger;
 
     hideEditButtonAndQuant(this);
-    displayEditForm(cell, path_for_submit, value);
+    displayEditForm(cell, path_for_submit, value, id);
   });
 
   $(document).on('click', 'input.button.tiny.radius.resource-update', function(event){

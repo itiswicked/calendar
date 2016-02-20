@@ -47,9 +47,9 @@
           <tr>
             <td class="resource-column"><%= resource.inventory_item.name %></td>
             <td>None</td>
-            <td class="quantity-column">
+            <td class="quantity-column" id="<%= resource.id %>">
               <span><%= resource.quantity %></span>
-              <div class="resource-buttons">
+              <div class="resource-buttons" >
                 <%= link_to 'Edit',
                     edit_event_resource_path(@event, resource),
                     class: "button secondary tiny resource-edit"
@@ -64,6 +64,7 @@
         <% end %>
       </tbody>
     </table>
-    <%= render 'resources/form' %>
+    <%= render 'resources/form', category: category %>
+
   </article>
 <% end %>
