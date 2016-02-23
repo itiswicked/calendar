@@ -24,14 +24,14 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
-end
-
-group :development, :test do
-  gem 'poltergeist'
-  gem 'pry-rails'
+  gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
+end
+
+group :development, :test do
+  gem 'pry-rails'
   gem 'dotenv-rails'
   gem 'coveralls', require: false
 end
