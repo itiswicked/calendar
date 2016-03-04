@@ -19,6 +19,7 @@
  // VARIABLES
 
 $color: black;
+$color-black: #666;
 $basic-border: 1px solid $color;
 $month-content-width: 72%;
 $light-gray-border: 1px solid #DDDDDD;
@@ -27,9 +28,6 @@ $the-enforcer: 35px auto 0px auto;
 // MIXINS, ETC
 
 @mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  -ms-border-radius: $radius;
   border-radius: $radius;
 }
 
@@ -93,25 +91,64 @@ hr {
 }
 
 // GENERAL
-.cal-body {
-  margin: 0 auto 50px auto;
-  table-layout: fixed;
-  border-collapse: collapse;
-  width: $month-content-width;
-  @include the-box-shadow;
+.main-nav-shadow {
+  box-shadow: 0 8px 12px rgba(0,0,0,0.12), 0 8px 12px rgba(0,0,0,0.24);
 }
 
 .alert-box {
   margin-bottom: 0;
 }
 
-.main-nav-shadow {
-  box-shadow: 0 8px 12px rgba(0,0,0,0.12), 0 8px 12px rgba(0,0,0,0.24);
-}
-
 .the-enforcer {
   margin: auto;
   height: 18px;
+}
+
+// CALENDAR TOP LEVEL
+
+.cal-top {
+  padding: 20px;
+  background-color: #DDDDDD;
+}
+
+.cal-title {
+  display: inline-block;
+}
+
+.month-name {
+  color: $color-black;
+}
+
+.cal-nav {
+  float: right;
+  i {
+    font-size: 4em;
+  }
+}
+
+.cal-nav i.today-link {
+  font-size: 2.7em;
+}
+
+.cal-wrapper {
+  margin: 20px auto;
+  width: 900px;
+  @include the-box-shadow;
+  border-radius: 10px;
+}
+
+.cal-body-wrapper {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  background-color: #fff;
+}
+
+.cal-body {
+  width: 100%;
+  table-layout: fixed;
+  border: none;
+  margin-bottom: 0;
 }
 
 // DAY LABELS TOP ROW
@@ -120,65 +157,54 @@ hr {
   margin: $the-enforcer;
 }
 
-.month-name {
-  padding-left: 15px;
-}
-
 .cal-body tr th {
   text-align: center;
+  background-color: #fff;
+  padding: 0;
+  h4 {
+    color: #008CBA;
+    margin: 3px 0;
+  }
 }
 
 // CALENDER CELLS
 .cal-body tr td {
   padding: 0;
   height: 110px;
-  border: 1px solid #DDDDDD;
+  background-color: #fff;
 }
 
 .cell {
-  margin: 0 auto;
-  height: 93%;
-  width: 93%;
   text-align: center;
-  @include border-radius(3px);
-}
-
-.indicator {
   margin: 0 auto;
-  height: 18px;
-  width: 18px;
-  border: 2px solid #DDDDDD;
-  @include border-radius(9px);
-}
-
-.filled {
-  background-color: #DDDDDD;
+  width: 90%;
+  height: 90%;
+  border: 1px solid #CCC;
+  display: table;
 }
 
 .date {
-  margin-top: 12px;
-  margin-bottom: 8px;
+  display: table-cell;
+  vertical-align: middle;
+  a { color: $color-black;}
 }
 
 .today {
-  margin: auto;
-  background-color: red;
-  height: 40px;
-  width: 40px;
-  @include border-radius(20px);
-  a {
-    padding-left: 1px;
-    color: white;
-  }
+  background-color: #FF8585;
+  a { color: white; }
 }
 
-.grayout a {
-  color: #DDDDDD;
+.event-today {
+  background-color: #DDDDDD;
+}
+
+.grayout {
+  border: 1px solid #EDEDED;
+  a { color: #DDDDDD; }
 }
 
 // SPLASH
 .splash {
-
 }
 
 .login-form {

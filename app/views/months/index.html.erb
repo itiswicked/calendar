@@ -1,58 +1,55 @@
-<nav class='month-view-nav'>
-  <ul class="button-group">
-    <li>
+
+
+<div class="cal-wrapper">
+  <div class="cal-top">
+    <div class="cal-title">
+      <h2 class='month-name'><%= @month.name.upcase %> <%= @month.year %></h4>
+    </div>
+    <div class="cal-nav">
       <%= link_to '<i class="material-icons">keyboard_arrow_left</i>'.html_safe,
-          request.params.merge(month: @month.last_m.month, year: @month.last_m.year),
-          class: "button small secondary arrow"
+          request.params.merge(month: @month.last_m.month, year: @month.last_m.year)
       %>
-    </li>
-    <li>
-      <%= link_to 'This Month', months_path, class: "button small secondary bold" %>
-    </li>
-    <li>
+      <%= link_to '<i class="material-icons today-link">today</i>'.html_safe, months_path %>
       <%= link_to '<i class="material-icons">keyboard_arrow_right</i>'.html_safe,
-          request.params.merge(month: @month.next_m.month, year: @month.next_m.year),
-          class: "button small secondary arrow"
+        request.params.merge(month: @month.next_m.month, year: @month.next_m.year)
       %>
-    </li>
-    <li class='month-name'><h4><%= @month.name %> <%= @month.year %></h4></li>
-  </ul>
-</nav>
+    </div>
+  </div>
 
+  <div class="cal-body-wrapper">
+    <table class='cal-body'>
+    <thead>
+      <tr>
+        <th><h4>SU</h4></th>
+        <th><h4>MO</h4></th>
+        <th><h4>TU</h4></th>
+        <th><h4>WE</h4></th>
+        <th><h4>TH</h4></th>
+        <th><h4>FR</h4></th>
+        <th><h4>SA</h4></th>
+      </tr>
+    </thead>
 
-<table class='cal-body'>
-  <thead>
-    <tr>
-      <th>Sun</th>
-      <th>Mon</th>
-      <th>Tue</th>
-      <th>Wed</th>
-      <th>Thu</th>
-      <th>Fri</th>
-      <th>Sat</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @month.data.each_slice(7) do |week| %>
-    <tr>
-      <% week.each do |day| %>
-      <td>
-        <div class="cell">
-          <h3 class="date">
-            <div class="<%= 'today' if day[:today] %> <%= 'grayout' unless day[:in_month] %>">
-              <%= link_to day[:date].day, events_path(
-                    day: day[:date].day,
-                    month: day[:date].month,
-                    year: day[:date].year
-                  )
-              %>
+    <tbody>
+      <% @month.data.each_slice(7) do |week| %>
+        <tr>
+          <% week.each do |day| %>
+          <td class>
+            <div class="cell <%= 'today' if day[:today] %> <%= 'event-today' if day[:event] %> <%= 'grayout' unless day[:in_month] %>">
+              <h2 class="date">
+                <%= link_to day[:date].day, events_path(
+                      day: day[:date].day,
+                      month: day[:date].month,
+                      year: day[:date].year
+                    )
+                %>
+              </h2>
             </div>
-          </h3>
-          <div class='indicator <%= 'filled' if day[:event] %>'></div>
-        </div>
-      </td>
-      <% end %>
-    </tr>
+          </td>
+        <% end %>
+      </tr>
     <% end %>
   </tbody>
+  </div>
 </table>
+</div>
