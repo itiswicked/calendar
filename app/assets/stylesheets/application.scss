@@ -35,13 +35,6 @@ $the-enforcer: 35px auto 0px auto;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
-@mixin translate-arrow-button {
-  // height: 45px;
-  // padding-top: 11px;
-  // padding-bottom: 7px;
-  transform: translate(0, 18%);
-}
-
 @mixin background($filename) {
   background-image: image-url($filename);
   background-size: cover;
