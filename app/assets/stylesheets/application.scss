@@ -36,9 +36,9 @@ $the-enforcer: 35px auto 0px auto;
 }
 
 @mixin translate-arrow-button {
-  height: 45px;
-  padding-top: 11px;
-  padding-bottom: 7px;
+  // height: 45px;
+  // padding-top: 11px;
+  // padding-bottom: 7px;
   transform: translate(0, 18%);
 }
 
@@ -57,14 +57,6 @@ body {
 
 .bold {
   font-weight: bold;
-}
-
-html body nav.month-view-nav ul.button-group li a.arrow {
-  @include translate-arrow-button;
-}
-
-html body nav.event-nav ul.button-group li a.arrow {
-  @include translate-arrow-button;
 }
 
 .shadow {
@@ -128,6 +120,7 @@ hr {
 
 .cal-nav i.today-link {
   font-size: 2.7em;
+  transform: translate(0, -19%);
 }
 
 .cal-wrapper {

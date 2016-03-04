@@ -25,7 +25,7 @@ feature 'user views other months' do
     click_link 'keyboard_arrow_left'
     last_month = (Time.now - 1.month)
 
-    expect(page).to have_content last_month.strftime("%B")
+    expect(page).to have_content last_month.strftime("%B").upcase
     expect(page).to have_content last_month.year
   end
 
@@ -33,7 +33,7 @@ feature 'user views other months' do
     click_link 'keyboard_arrow_right'
     next_month = (Time.now + 1.month)
 
-    expect(page).to have_content next_month.strftime("%B")
+    expect(page).to have_content next_month.strftime("%B").upcase
     expect(page).to have_content next_month.year
   end
 
