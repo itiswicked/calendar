@@ -25,14 +25,17 @@ feature 'user views month' do
   end
 
   scenario 'and sees current months' do
-    expect(page).to have_content Time.now.strftime("%B")
+    expect(page).to have_content Time.now.strftime("%B").upcase
   end
 
   scenario 'and sees filled dots to indicate which days have events' do
     dates = [8, 11, 13, 15, 17, 18]
     dates
-      .map { |n| page.find(:xpath, "//div[h3[div[a[.='#{n}']]]]") }
-      .each { |element| expect(element.has_css?(".filled")).to be true }
+      .map { |date| page.find(:xpath, "//a[text()='#{date}']") }
+      .each do |element|
+        div_classes = element.find(:xpath, "../..")[:class]
+        expect(div_classes).to have_content 'event-today'
+      end
   end
 
   scenario 'and sees what day it is' do
