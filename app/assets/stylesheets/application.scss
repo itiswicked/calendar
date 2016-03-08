@@ -59,7 +59,7 @@ body {
 .shadow {
   &:hover {
     box-shadow: 5px 5px 20px rgba(136,136,136,0.8);
-    transition: 0.25s ease-in-out;
+    transition: all 0.2s ease-in-out;
   }
 }
 
@@ -220,7 +220,7 @@ hr {
 }
 
 .date {
-  color: $charcoal
+  color: $charcoal;
 }
 
 .day-nav {
@@ -247,12 +247,15 @@ hr {
 }
 
 .event {
+  @include the-box-shadow;
   background-color: white;
   margin: 20px auto;
-  @include the-box-shadow;
   height: 80px;
-  .event-buttons { display: none }
+  // border: 1px solid #aaa;
+  .event-buttons { opacity: 0; }
   &:hover .event-buttons {
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
     display: inline-block;
     float: right;
     clear: right;
@@ -277,7 +280,7 @@ hr {
 }
 
 .event-time {
-  font-size: 1.6em;
+  font-size: 1.5em;
 }
 
 span.event-end-time {
@@ -294,11 +297,14 @@ span.event-end-time {
   background-color: white;
   height: 30px;
   width: 30px;
-  border: 1px solid gray;
+  border: 1px solid $light-gray;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   @include border-radius(15px);
+  i {
+    transform: translate(0, 7%);
+  }
 }
 
 .dept-tag {
@@ -329,9 +335,6 @@ span.event-end-time {
   p {
     margin: 0;
   }
-}
-
-.event-show-banner {
 }
 
 .event-show-buttons {
