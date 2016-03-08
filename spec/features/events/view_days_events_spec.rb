@@ -27,7 +27,6 @@ feature 'user views days events' do
 
   after(:each) do
     expect(page).to have_content event.title
-    expect(page).to have_content event.description
   end
 
   scenario 'by clicking on a day in calendar' do

@@ -256,7 +256,7 @@ hr {
   padding: 5px 10px 10px 10px;
   margin: 0 auto;
   @include the-box-shadow;
-  position: relative;
+  position: top;
   z-index: -1;
   h3 {
     margin: 0;
