@@ -1,31 +1,27 @@
-<nav class='event-nav'>
-  <ul class="button-group">
-    <li>
+<div class="event-header-wrapper">
+  <div class='event-nav-wrapper'>
+    <div class='day-title'>
+      <h2 class="date"><%= @date.strftime("%A %b %-d, %Y").upcase %></h2>
+    </div>
+    <div class="day-nav">
       <%= link_to '<i class="material-icons">keyboard_arrow_left</i>'.html_safe,
           events_path(@yesterday),
-          class: "button small secondary arrow"
+          class: "arrow"
       %>
-    </li>
-    <li>
-      <%= link_to 'Today',
-          events_path(month: Time.now.month, day: Time.now.day, year: Time.now.year),
-          class: "button small secondary bold"
+      <%= link_to '<i class="material-icons today-link">today</i>'.html_safe,
+          events_path(month: Time.now.month, day: Time.now.day, year: Time.now.year)
       %>
-    </li>
-    <li>
       <%= link_to '<i class="material-icons">keyboard_arrow_right</i>'.html_safe,
           events_path(@tomorrow),
-          class: "button small secondary arrow"
+          class: "arrow"
       %>
-    </li>
-    <li class='event-date'><h4><%= @date.strftime("%A %b %-d, %Y") %></h4></li>
-  </ul>
-</nav>
+    </div>
+  </div>
 
-<div class="event-form shadow">
-  <h3>New Event</h3>
-  <%= render 'form' %>
+  <div class="event-form">
+    <h3>New Event</h3>
+    <%= render 'form' %>
+  </div>
+
+  <%= render @events %>
 </div>
-
-
-<%= render @events %>

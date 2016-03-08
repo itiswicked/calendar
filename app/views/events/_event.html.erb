@@ -1,56 +1,45 @@
-<article class="event shadow">
+<article class="event">
   <div class="row">
-    <div class="row">
-      <div clas="row">
-        <div class="small-6 columns">
-          <h4 class="event-title"><%= link_to event.title, event_path(event) %><h4>
-        </div>
-        <div class="small-6 columns">
-          <div class="button-group event-buttons">
-            <span class="event-time"><%= event.start_str %> - <%= event.end_str %></span>
-            <%= link_to 'Edit', edit_event_path(event), class: "button secondary tiny" %>
-            <%= link_to 'Delete', event_path(event), method: :delete, class: "button alert tiny" %>
+    <div class="small-2 columns event-time-index">
+      <div class="event-time-wrapper">
+        <span class="event-time"><%= event.start_str %></span>
+        <span class="event-end-time">ends <%= event.end_str %></span>
+      </div>
+    </div>
+    <div class="small-9 columns end">
+      <div class="row">
+        <div class="small-12 columns event-title-container">
+          <h3 class="event-title"><%= link_to event.title, event_path(event) %></h3>
+          <div class="event-buttons">
+            <div class="circle-button">
+              <%= link_to '<i class="material-icons">create</i>'.html_safe, edit_event_path(event) %>
+            </div>
+            <div class="circle-button">
+              <%= link_to '<i class="material-icons">clear</i>'.html_safe, event_path(event), method: :delete %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <p class="event-descript"><%= event.description %> </p>
-    <div class="row">
-      <div class="small-2 columns">
-        <% if event.has_lighting? %>
-          <span>Lighting: <i class="material-icons overview-icon">done</i></span>
-        <% else %>
-          <span>Lighting: <i class="material-icons overview-icon">close</i></span>
-        <% end %>
-      </div>
-      <div class="small-2 columns">
-        <% if event.has_sound? %>
-          <span>Sound: <i class="material-icons overview-icon">done</i></span>
-        <% else %>
-          <span>Sound: <i class="material-icons overview-icon">close</i></span>
-        <% end %>
-      </div>
-      <div class="small-2 columns">
-        <% if event.has_scenic? %>
-          <span>Scenic: <i class="material-icons overview-icon">done</i></span>
-        <% else %>
-          <span>Scenic: <i class="material-icons overview-icon">close</i></span>
-        <% end %>
-      </div>
-      <div class="small-2 columns">
-        <% if event.has_catering? %>
-          <span>Catering: <i class="material-icons overview-icon">done</i></span>
-        <% else %>
-          <span>Catering: <i class="material-icons overview-icon">close</i></span>
-        <% end %>
-      </div>
-      <div class="small-2 columns end">
-        <% if event.has_wardrobe? %>
-          <span>Wardrobe: <i class="material-icons overview-icon">done</i></span>
-        <% else %>
-          <span>Wardrobe: <i class="material-icons overview-icon">close</i></span>
-        <% end %>
+      <div class="row">
+        <div class="small-12 columns tag-container">
+          <% if event.has_lighting? %>
+            <span class="dept-tag">lighting</span>
+          <% end %>
+          <% if event.has_sound? %>
+            <span class="dept-tag">sound</span>
+          <% end %>
+          <% if event.has_scenic? %>
+            <span class="dept-tag">scenic</span>
+          <% end %>
+          <% if event.has_catering? %>
+            <span class="dept-tag">catering</span>
+          <% end %>
+          <% if event.has_wardrobe? %>
+            <span class="dept-tag">wardrobe</span>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
+
 </article>

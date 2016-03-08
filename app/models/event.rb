@@ -25,11 +25,19 @@ class Event < ActiveRecord::Base
   end
 
   def start_str
-    start_time.strftime(display_time)
+    start_time.strftime(display_time).lstrip
   end
 
   def end_str
-    end_time.strftime(display_time)
+    end_time.strftime(display_time).lstrip
+  end
+
+  def hour_and_minute
+    start_time.strftime("%l:%M")
+  end
+
+  def meridian_indicator
+    start_time.strftime("%p")
   end
 
   def display_date

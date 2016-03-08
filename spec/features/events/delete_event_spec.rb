@@ -24,7 +24,7 @@ feature 'user deletes event' do
     visit event_path event
     click_link 'Delete'
 
-    expect(page).to have_content date.strftime("%A %b %-d, %Y")
+    expect(page).to have_content date.strftime("%A %b %-d, %Y").upcase
     expect(page).to_not have_content event_title
   end
 end
