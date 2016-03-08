@@ -307,11 +307,16 @@ span.event-end-time {
   }
 }
 
+.x {
+  border-left: none;
+}
+
 .dept-tag {
-  padding: 4px 6px;
-  color: #ffffff;
-  border-radius: 5px;
-  background: linear-gradient(to bottom, #28B0DE 0%,#008CBA 100%);
+  padding: 3px 6px;
+  color: #fff;
+  border-radius: 15px;
+  background: linear-gradient(to bottom, #28B0DE 0%, #008CBA 100%);
+  font-size: 9pt;
 }
 
 .event-descript {
