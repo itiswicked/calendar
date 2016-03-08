@@ -3,20 +3,20 @@
   <%= f.hidden_field :date, value: @date.to_time %>
   <% end %>
 
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
 
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-    <div class="row">
-      <div class="small-6 columns">
-        <%= f.label :start_time, 'Start Time' %>
-        <%= f.datetime_local_field :start_time %>
-      </div>
-      <div class="small-6 columns">
-        <%= f.label :end_time, 'End Time' %>
-        <%= f.datetime_local_field :end_time %>
-      </div>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <div class="row">
+    <div class="small-6 columns start-time-field">
+      <%= f.label :start_time, 'Start Time' %>
+      <%= f.datetime_local_field :start_time %>
+    </div>
+    <div class="small-6 columns end-time-field">
+      <%= f.label :end_time, 'End Time' %>
+      <%= f.datetime_local_field :end_time %>
     </div>
   </div>
   <%= f.submit 'Submit', class: "button small radius" %>

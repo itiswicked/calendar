@@ -52,6 +52,10 @@ body {
   background-size: auto;
 }
 
+input, textarea {
+  margin: 0 0 8px 0 !important;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -84,6 +88,10 @@ hr {
 .the-enforcer {
   margin: auto;
   height: 18px;
+}
+
+.button {
+  margin: 0 !important;
 }
 
 // SPLASH
@@ -205,14 +213,16 @@ hr {
 
 // EVENTS
 .event-header-wrapper {
-  width: 850px;
+  width: 700px;
   margin: 20px auto;
 }
 
 .event-nav-wrapper {
-  @include the-box-shadow;
+  box-shadow: 0 4px 3px rgba(0, 0, 0, 0.10), 0 1px 2px rgba(0, 0, 0, 0.24);
   height: 70px;
   padding: 10px 15px;
+  position: relative;
+  z-index: 1;
   background-color: $light-gray;
 }
 
@@ -243,9 +253,38 @@ hr {
 
 .event-form {
   background-color: $white;
-  padding: 15px 25px 15px 25px;
+  padding: 5px 18px 10px 18px;
   margin: 0 auto;
   @include the-box-shadow;
+  position: relative;
+  z-index: -1;
+  h3 {
+    margin: 0;
+  }
+}
+
+.standalone-event-form {
+  width: 730px;
+  margin: 40px auto;
+}
+
+.event-form-time-fields {
+  height: 80px;
+  width: 100%;
+  display: inline-flex;
+  div div {
+    display: inline-block;
+  }
+}
+
+.start-time-field {
+  padding-left: 0;
+  padding-right: 10px;
+}
+
+.end-time-field {
+  padding-right: 0;
+  padding-left: 10px;
 }
 
 .event {
@@ -253,7 +292,6 @@ hr {
   background-color: white;
   margin: 20px auto;
   height: 80px;
-  // border: 1px solid #aaa;
   .event-buttons { opacity: 0; }
   &:hover .event-buttons {
     opacity: 1;
@@ -262,18 +300,25 @@ hr {
     float: right;
     clear: right;
     position: relative;
-      top: -22px;
-      right: -31px;
+      top: -15px;
+      right: -75px;
   }
 }
 
+.event-title-container {
+  padding-left: 10px;
+}
+
 .event-title {
+  margin-bottom: 5px;
   float: left;
   clear:left;
 }
 
 .event-time-index {
+  padding: 0;
   background-color: #008CBA;
+  width: 130px;
   height: 80px;
   span {
     color: white;
@@ -282,17 +327,22 @@ hr {
 }
 
 .event-time {
-  font-size: 1.5em;
+  font-size: 1.7em;
 }
 
 span.event-end-time {
-  font-size: 0.75em;
+  font-size: 0.8em;
+  margin-top: 8px;
 }
 
 .event-time-wrapper {
   display: block;
   text-align: center;
-  padding-top: 8px;
+  padding-top: 1px;
+}
+
+.tag-container {
+  padding-left: 10px;
 }
 
 .circle-button {
@@ -305,7 +355,7 @@ span.event-end-time {
   align-items: center;
   @include border-radius(15px);
   i {
-    transform: translate(0, 7%);
+    transform: translate(0, 9%);
   }
 }
 
