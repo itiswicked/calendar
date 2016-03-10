@@ -1,9 +1,9 @@
-<div class="row event-show shadow">
+<div class="row event-show">
   <div class="medium-2 columns event-show-time">
-    <p><%= @event.display_date %></p>
-    <p>Start</p>
+    <span><%= @event.display_date %></span>
+    <span>Start</span>
     <h3><%= @event.start_str %></h3>
-    <p>End</p>
+    <span>End</span>
     <h3><%= @event.end_str %></h3>
   </div>
   <div class="medium-10 columns">
@@ -11,15 +11,13 @@
       <div class="medium-9 columns">
         <h3><%= @event.title %></h3>
       </div>
-      <div class="medium-3 columns">
-        <ul class="button-group event-show-buttons">
-          <li>
-            <%= link_to 'Edit', edit_event_path(@event), class: "button tiny secondary" %>
-          </li>
-          <li>
-            <%= link_to 'Delete', event_path(@event), method: :delete, class: "button tiny alert" %>
-          </li>
-        </ul>
+      <div class="event-buttons-show">
+        <div class="circle-button">
+          <%= link_to '<i class="material-icons">create</i>'.html_safe, edit_event_path(@event) %>
+        </div>
+        <div class="circle-button">
+          <%= link_to '<i class="material-icons">clear</i>'.html_safe, event_path(@event), method: :delete %>
+        </div>
       </div>
     </div>
     <hr>
@@ -32,7 +30,7 @@
 </div>
 
 <% @categories.each do |category| %>
-  <article class="resource-category shadow">
+  <article class="resource-category">
     <h3><%= category %></h3>
     <table class="resource-table">
       <thead>
@@ -49,7 +47,7 @@
             <td>None</td>
             <td class="quantity-column" id="<%= resource.id %>">
               <span><%= resource.quantity %></span>
-              <div class="resource-buttons" >
+              <div class="resource-buttons">
                 <%= link_to 'Edit',
                     edit_event_resource_path(@event, resource),
                     class: "button secondary tiny resource-edit"

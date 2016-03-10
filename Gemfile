@@ -15,6 +15,7 @@ gem 'omniauth-github'
 gem 'validates_timeliness', '~> 4.0'
 gem 'time_splitter'
 gem 'foundation-rails'
+gem 'table_flipper'
 
 group :development do
   gem 'web-console', '~> 2.0'

@@ -52,6 +52,10 @@ body {
   background-size: auto;
 }
 
+label {
+  font-size: 13px;
+}
+
 input, textarea {
   margin: 0 0 8px 0 !important;
 }
@@ -194,12 +198,16 @@ hr {
 .date {
   display: table-cell;
   vertical-align: middle;
-  a { color: $charcoal; }
+  a {
+    color: $charcoal;
+  }
 }
 
 .today {
   background-color: $light-red;
-  a { color: white; }
+  a {
+    color: white;
+  }
 }
 
 .event-today {
@@ -208,7 +216,9 @@ hr {
 
 .grayout {
   border: $very-light-gray-border;
-  a { color: $light-gray; }
+  a {
+    color: $light-gray;
+  }
 }
 
 // EVENTS
@@ -377,12 +387,10 @@ span.event-end-time {
 
 // EVENT SHOW PAGE
 .event-show {
-  background-color: white;
-  border: $light-gray-border;
+  background-color: $white;
   margin: $the-enforcer;
-  width: 80%;
+  width: 750px;
   padding: 10px;
-  @include border-radius(4px);
   @include the-box-shadow;
   max-width: none;
   p {
@@ -390,8 +398,10 @@ span.event-end-time {
   }
 }
 
-.event-show-buttons {
-  transform: translate(10%, 25%);
+.event-buttons-show {
+  position: relative;
+  top: -25px;
+  left: 130px;
   li a {
     @include border-radius(2px);
     @include the-box-shadow;
@@ -411,8 +421,6 @@ span.event-end-time {
   padding: 10px 30px;
   width: 80%;
   margin: 20px auto;
-  border: $light-gray-border;
-  @include border-radius(4px);
   @include the-box-shadow;
 }
 
