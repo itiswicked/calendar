@@ -1,68 +1,70 @@
-<div class="row event-show">
-  <div class="medium-2 columns event-show-time">
-    <span><%= @event.display_date %></span>
-    <span>Start</span>
-    <h3><%= @event.start_str %></h3>
-    <span>End</span>
-    <h3><%= @event.end_str %></h3>
-  </div>
-  <div class="medium-10 columns">
-    <div class="row event-show-banner">
-      <div class="medium-9 columns">
-        <h3><%= @event.title %></h3>
-      </div>
-      <div class="event-buttons-show">
-        <div class="circle-button">
-          <%= link_to '<i class="material-icons">create</i>'.html_safe, edit_event_path(@event) %>
+<div class="event-show-wrapper">
+  <div class="row event-show">
+    <div class="medium-2 columns event-show-time">
+      <span><%= @event.display_date %></span>
+      <span>Start</span>
+      <h3><%= @event.start_str %></h3>
+      <span>End</span>
+      <h3><%= @event.end_str %></h3>
+    </div>
+    <div class="medium-10 columns">
+      <div class="row event-show-banner">
+        <div class="medium-9 columns">
+          <h3><%= @event.title %></h3>
         </div>
-        <div class="circle-button">
-          <%= link_to '<i class="material-icons">clear</i>'.html_safe, event_path(@event), method: :delete %>
+        <div class="event-buttons-show">
+          <div class="circle-button">
+            <%= link_to '<i class="material-icons">create</i>'.html_safe, edit_event_path(@event) %>
+          </div>
+          <div class="circle-button">
+            <%= link_to '<i class="material-icons">clear</i>'.html_safe, event_path(@event), method: :delete %>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="medium-12 columns">
+          <p><%= @event.description %></p>
         </div>
       </div>
     </div>
-    <hr>
-    <div class="row">
-      <div class="medium-12 columns">
-        <p><%= @event.description %></p>
-      </div>
-    </div>
   </div>
-</div>
 
-<% @categories.each do |category| %>
-  <article class="resource-category">
-    <h3><%= category %></h3>
-    <table class="resource-table">
-      <thead>
-        <tr>
-          <th class="resource-column">Resource</th>
-          <th>Notes</th>
-          <th class="quantity-column">Quantity</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @resources.select { |resource| resource.inventory_item.category == category }.each do |resource| %>
+  <% @categories.each do |category| %>
+    <article class="resource-category">
+      <h3><%= category %></h3>
+      <table class="resource-table">
+        <thead>
           <tr>
-            <td class="resource-column"><%= resource.inventory_item.name %></td>
-            <td>None</td>
-            <td class="quantity-column" id="<%= resource.id %>">
-              <span><%= resource.quantity %></span>
-              <div class="resource-buttons">
-                <%= link_to 'Edit',
-                    edit_event_resource_path(@event, resource),
-                    class: "button secondary tiny resource-edit"
-                %>
-                <%= link_to 'Delete',
-                    api_resource_path(resource),
-                    method: :delete, class: "button alert tiny resource-delete"
-                %>
-              </div>
-            </td>
+            <th class="resource-column">Resource</th>
+            <th class="notes-column">Notes</th>
+            <th class="quantity-column">Quantity</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= render 'resources/form', category: category %>
+        </thead>
+        <tbody>
+          <% @resources.select { |resource| resource.inventory_item.category == category }.each do |resource| %>
+            <tr class="resource-row">
+              <td class="resource-column"><%= resource.inventory_item.name %></td>
+              <td class="notes-column">-</td>
+              <td class="quantity-column" id="<%= resource.id %>">
+                <span><%= resource.quantity %></span>
+                <div class="resource-buttons">
+                  <%= link_to '<i class="material-icons">create</i>'.html_safe,
+                      edit_event_resource_path(@event, resource),
+                      class: "resource-edit"
+                  %>
+                  <%= link_to '<i class="material-icons">clear</i>'.html_safe,
+                      api_resource_path(resource),
+                      method: :delete, class: "resource-delete"
+                  %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render 'resources/form', category: category %>
 
-  </article>
-<% end %>
+    </article>
+  <% end %>
+</div>

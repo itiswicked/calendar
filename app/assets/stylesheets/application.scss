@@ -28,6 +28,7 @@ $charcoal: #666;
 $light-gray: #ddd;
 $white: #fff;
 $light-red: #ff8585;
+$blue: #008CBA;
 
 // MIXINS, ETC
 
@@ -56,8 +57,8 @@ label {
   font-size: 13px;
 }
 
-input, textarea {
-  margin: 0 0 8px 0 !important;
+input, textarea, select {
+  margin-bottom: 0 !important;
 }
 
 .bold {
@@ -95,7 +96,7 @@ hr {
 }
 
 .button {
-  margin: 0 !important;
+  // margin: 0 !important;
 }
 
 // SPLASH
@@ -174,7 +175,7 @@ hr {
   background-color: $white;
   padding: 0;
   h4 {
-    color: #008CBA;
+    color: $blue;
     margin: 3px 0;
   }
 }
@@ -327,7 +328,7 @@ hr {
 
 .event-time-index {
   padding: 0;
-  background-color: #008CBA;
+  background-color: $blue;
   width: 130px;
   height: 80px;
   span {
@@ -373,7 +374,7 @@ span.event-end-time {
   padding: 3px 6px;
   color: #fff;
   border-radius: 15px;
-  background: linear-gradient(to bottom, #28B0DE 0%, #008CBA 100%);
+  background: linear-gradient(to bottom, #28B0DE 0%, $blue 100%);
   font-size: 9pt;
 }
 
@@ -386,13 +387,15 @@ span.event-end-time {
 }
 
 // EVENT SHOW PAGE
+.event-show-wrapper {
+  margin: $the-enforcer;
+  width: 700px;
+}
+
 .event-show {
   background-color: $white;
-  margin: $the-enforcer;
-  width: 750px;
   padding: 10px;
   @include the-box-shadow;
-  max-width: none;
   p {
     margin: 0;
   }
@@ -418,30 +421,56 @@ span.event-end-time {
 // RESOURCES
 .resource-category {
   background-color: white;
-  padding: 10px 30px;
-  width: 80%;
+  padding: 10px;
   margin: 20px auto;
   @include the-box-shadow;
 }
 
+.resource-select {
+  padding-right: 5px;
+  padding-left: 0;
+}
+
+.resource-quantity-field {
+  padding-right: 0;
+  padding-left: 5px;
+}
+
+.resource-add-button {
+  font-size: 18px;
+  padding: 6px 8px;
+  margin-top: 20px;
+}
+
 .resource-table {
+  border-collapse: collapse;
+  border: none;
   width: 100%;
-  a {
-    @include border-radius(2px);
-    @include the-box-shadow;
+  margin-bottom: 10px;
+  thead {
+    background: #fff;
+    th { border-bottom: 2px solid $blue; }
   }
 }
 
-td .button {
-  margin: 0;
+.resource-row {
+  background: #fff;
+}
+
+tr.resource-row {
+  border-bottom: 1px dashed $light-gray;
 }
 
 .resource-column {
-  width: 120px;
+  width: 180px;
+}
+
+.resource-column, .notes-column, .quantity-column {
+  padding: 3px 0;
 }
 
 .quantity-column {
-  width: 220px;
+  width: 120px;
   position: relative;
   span {
     position: absolute;

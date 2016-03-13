@@ -1,27 +1,22 @@
 <%= form_for [@event, @resource] do |f| %>
   <%= f.hidden_field :event_id, value: @event.id %>
+
   <div class="row">
-    <div class="small-5 columns">
-      <div class="small-3 columns">
-        <%= f.label :inventory_item_id, 'Resource' %>
-
-      </div>
-      <div class="small-9 columns">
-        <%= f.select :inventory_item_id, options_for_select(@categories_select[category]) %>
-      </div>
+    <div class="small-6 columns resource-select">
+      <%= f.label :inventory_item_id, 'Resource' %>
+      <%= f.select :inventory_item_id, options_for_select(@categories_select[category]) %>
     </div>
-    <div class="small-5 columns">
-      <div class="small-3 columns">
-        <%= f.label :quantity %>
-
+    <div class="small-6 columns">
+      <div class="row">
+        <div class="small-10 columns resource-quantity-field">
+          <%= f.label :quantity %>
+          <%= f.text_field :quantity %>
+        </div>
+        <div class="small-2 columns">
+          <%= f.submit 'Add', class: "button radius resource-add-button" %>
+        </div>
       </div>
-      <div class="small-9 columns">
-        <%= f.text_field :quantity %>
-
-      </div>
-    </div>
-    <div class="small-2 columns">
-      <%= f.submit 'Add', class: "button tiny radius" %>
     </div>
   </div>
+
 <% end %>

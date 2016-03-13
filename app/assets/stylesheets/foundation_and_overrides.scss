@@ -447,7 +447,7 @@ $button-sml: rem-calc(8);
 
 // We use this to control the display property.
 // $button-display: inline-block;
-// $button-margin-bottom: rem-calc(20);
+$button-margin-bottom: rem-calc(0);
 
 // We use these to control button text styles.
 // $button-font-family: $body-font-family;
@@ -493,7 +493,8 @@ $button-font-sml: rem-calc(16);
 
 // $include-html-button-classes: $include-html-classes;
 
-// Sets the margin for the right side by default, and the left margin if right-to-left direction is used
+// Sets the margin for the right side by default, and the left
+// if right-to-left direction is used
 // $button-bar-margin-opposite: rem-calc(10);
 // $button-group-border-width: 1px;
 
@@ -1295,8 +1296,8 @@ $button-font-sml: rem-calc(16);
 // $include-html-table-classes: $include-html-classes;
 
 // These control the background color for the table and even rows
-// $table-bg: $white;
-// $table-even-row-bg: $snow;
+$table-bg: #fff;
+$table-even-row-bg: #fff;
 
 // These control the table cell border style
 // $table-border-style: solid;
@@ -1324,7 +1325,7 @@ $button-font-sml: rem-calc(16);
 // $table-caption-font-weight: bold;
 
 // These control the row padding and font styles
-// $table-row-padding: rem-calc(9 10);
+$table-row-padding: rem-calc(0);
 // $table-row-font-size: rem-calc(14);
 // $table-row-font-color: $jet;
 // $table-line-height: rem-calc(18);
