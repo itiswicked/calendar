@@ -396,12 +396,9 @@ span.event-end-time {
   background-color: $white;
   padding: 10px;
   @include the-box-shadow;
-  p {
-    margin: 0;
-  }
 }
 
-.event-buttons-show {
+.event-show-buttons {
   position: relative;
   top: -25px;
   left: 130px;
@@ -414,8 +411,13 @@ span.event-end-time {
 
 .event-show-time {
   text-align: center;
-  min-width: 120px;
-  p { margin: 5px; }
+}
+
+.event-show-time,
+.event-show-info,
+.event-show-title,
+.event-show-description {
+  padding: 0;
 }
 
 // RESOURCES
@@ -424,6 +426,9 @@ span.event-end-time {
   padding: 10px;
   margin: 20px auto;
   @include the-box-shadow;
+  h3 {
+    margin: 0;
+  }
 }
 
 .resource-select {
@@ -440,6 +445,12 @@ span.event-end-time {
   font-size: 18px;
   padding: 6px 8px;
   margin-top: 20px;
+}
+
+select.select-box,
+input.quantity-box,
+input.resource-add-button {
+  height: 33px;
 }
 
 .resource-table {

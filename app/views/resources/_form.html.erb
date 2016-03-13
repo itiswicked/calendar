@@ -4,13 +4,16 @@
   <div class="row">
     <div class="small-6 columns resource-select">
       <%= f.label :inventory_item_id, 'Resource' %>
-      <%= f.select :inventory_item_id, options_for_select(@categories_select[category]) %>
+      <%= f.select :inventory_item_id,
+          options_for_select(@categories_select[category]),
+          {}, { class: 'select-box' }
+      %>
     </div>
     <div class="small-6 columns">
       <div class="row">
         <div class="small-10 columns resource-quantity-field">
           <%= f.label :quantity %>
-          <%= f.text_field :quantity %>
+          <%= f.text_field :quantity, class: 'quantity-box' %>
         </div>
         <div class="small-2 columns">
           <%= f.submit 'Add', class: "button radius resource-add-button" %>

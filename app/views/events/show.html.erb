@@ -1,34 +1,16 @@
 <div class="event-show-wrapper">
-  <div class="row event-show">
-    <div class="medium-2 columns event-show-time">
-      <span><%= @event.display_date %></span>
-      <span>Start</span>
-      <h3><%= @event.start_str %></h3>
-      <span>End</span>
-      <h3><%= @event.end_str %></h3>
+  <article class="event-show">
+    <h3><%= @event.title %></h3>
+    <hr>
+    <div class="event-show-description">
+      <p><%= @event.description %></p>
     </div>
-    <div class="medium-10 columns">
-      <div class="row event-show-banner">
-        <div class="medium-9 columns">
-          <h3><%= @event.title %></h3>
-        </div>
-        <div class="event-buttons-show">
-          <div class="circle-button">
-            <%= link_to '<i class="material-icons">create</i>'.html_safe, edit_event_path(@event) %>
-          </div>
-          <div class="circle-button">
-            <%= link_to '<i class="material-icons">clear</i>'.html_safe, event_path(@event), method: :delete %>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="medium-12 columns">
-          <p><%= @event.description %></p>
-        </div>
-      </div>
-    </div>
-  </div>
+    <span><%= @event.display_date %> </span>
+    <span><%= @event.start_str %> - <%= @event.end_str %></span>
+    <span></span>
+
+  </article>
+
 
   <% @categories.each do |category| %>
     <article class="resource-category">
@@ -67,4 +49,14 @@
 
     </article>
   <% end %>
+</div>
+
+
+<div class="event-show-buttons">
+  <div class="circle-button">
+    <%= link_to '<i class="material-icons">create</i>'.html_safe, edit_event_path(@event) %>
+  </div>
+  <div class="circle-button">
+    <%= link_to '<i class="material-icons">clear</i>'.html_safe, event_path(@event), method: :delete %>
+  </div>
 </div>
