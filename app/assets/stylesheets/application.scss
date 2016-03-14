@@ -394,8 +394,25 @@ span.event-end-time {
 
 .event-show {
   background-color: $white;
-  padding: 10px;
+  padding: 4px 10px 4px 10px;
   @include the-box-shadow;
+  h3, p {
+    margin: 0;
+  }
+  p {
+    font-size: 14px;
+  }
+  hr {
+    margin: 3px;
+    color: $blue;
+  }
+}
+
+.event-show-title {
+  border-bottom: 2px solid $blue;
+  h3 {
+    margin-bottom: 4px;
+  }
 }
 
 .event-show-buttons {
@@ -409,15 +426,31 @@ span.event-end-time {
   }
 }
 
-.event-show-time {
-  text-align: center;
+.event-show-info {
+  color: $charcoal;
+  font-size: 14px;
+  display: inline-block;
 }
 
-.event-show-time,
-.event-show-info,
-.event-show-title,
-.event-show-description {
-  padding: 0;
+.event-show-date-container, .event-show-time-container {
+  display: inline;
+}
+
+.event-show-date-container {
+  padding-right: 5px;
+}
+
+.event-show-time-container {
+  padding-left: 5px;
+}
+
+.event-show-clock, .event-show-cal {
+  transform: translate(0, 24%);
+  font-size: 20px;
+}
+
+.event-show-time {
+  text-align: center;
 }
 
 // RESOURCES

@@ -1,14 +1,21 @@
 <div class="event-show-wrapper">
   <article class="event-show">
-    <h3><%= @event.title %></h3>
-    <hr>
+    <div class="event-show-title">
+      <h3><%= @event.title %></h3>
+    </div>
     <div class="event-show-description">
       <p><%= @event.description %></p>
     </div>
-    <span><%= @event.display_date %> </span>
-    <span><%= @event.start_str %> - <%= @event.end_str %></span>
-    <span></span>
-
+    <div class="event-show-info">
+      <div class="event-show-date-container">
+        <i class="material-icons event-show-cal">today</i>
+        <span><%= @event.display_date %></span>
+      </div>
+      <div class="event-show-time-container">
+        <i class="material-icons event-show-clock">schedule</i>
+        <span class="event-show-time"><%= @event.start_str %> - <%= @event.end_str %></span>
+      </div>
+    </div>
   </article>
 
 
