@@ -7,10 +7,12 @@ class EventsController < ApplicationController
     @tomorrow = tomorrow
     @event = Event.new
     @events = Event.find_by_date(@date).order(:start_time)
+    @button_text = "Add"
   end
 
   def new
     @event = Event.new
+    @button_text = "Add"
   end
 
   def show
@@ -35,6 +37,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    @button_text = "Update"
   end
 
   def update

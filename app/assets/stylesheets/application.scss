@@ -31,7 +31,6 @@ $light-red: #ff8585;
 $blue: #008CBA;
 
 // MIXINS, ETC
-
 @mixin border-radius($radius) {
   border-radius: $radius;
 }
@@ -99,10 +98,6 @@ hr {
 .the-enforcer {
   margin: auto;
   height: 18px;
-}
-
-.button {
-  // margin: 0 !important;
 }
 
 // SPLASH
@@ -302,6 +297,10 @@ hr {
 .end-time-field {
   padding-right: 0;
   padding-left: 10px;
+}
+
+.event-form-button {
+  margin-top: 10px;
 }
 
 .event {

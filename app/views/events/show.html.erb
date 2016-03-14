@@ -40,11 +40,14 @@
                 <div class="resource-buttons">
                   <%= link_to '<i class="material-icons">create</i>'.html_safe,
                       edit_event_resource_path(@event, resource),
-                      class: "resource-edit"
+                      class: "resource-edit",
+                      resource_id: resource.id
                   %>
                   <%= link_to '<i class="material-icons">clear</i>'.html_safe,
                       api_resource_path(resource),
-                      method: :delete, class: "resource-delete"
+                      method: :delete,
+                      class: "resource-delete",
+                      resource_id: resource.id
                   %>
                 </div>
               </td>
