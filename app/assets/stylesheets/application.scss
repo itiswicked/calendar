@@ -46,6 +46,12 @@ $blue: #008CBA;
   min-height: 100%;
 }
 
+@mixin display-buttons {
+  float: right;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
 body {
   background-image: image-url("mooning.png");
   background-position: center center;
@@ -305,8 +311,7 @@ hr {
   height: 80px;
   .event-buttons { opacity: 0; }
   &:hover .event-buttons {
-    opacity: 1;
-    transition: all 0.2s ease-in-out;
+    @include display-buttons;
     display: inline-block;
     float: right;
     clear: right;
@@ -497,12 +502,14 @@ input.resource-add-button {
   }
 }
 
-.resource-row {
-  background: #fff;
-}
-
 tr.resource-row {
+  height: 35px;
   border-bottom: 1px dashed $light-gray;
+  &:hover .resource-buttons {
+    @include display-buttons;
+    position: relative;
+      top: 2px;
+  }
 }
 
 .resource-column {
@@ -524,7 +531,7 @@ tr.resource-row {
 }
 
 .resource-buttons {
-  float: right;
+  opacity: 0;
 }
 
 body div article table tbody tr td.quantity-column form div div input.resource-quantity-update {
