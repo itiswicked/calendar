@@ -369,9 +369,14 @@ span.event-end-time {
   justify-content: center;
   align-items: center;
   @include border-radius(15px);
-  i {
-    transform: translate(0, 9%);
-  }
+}
+
+.event-index-delete {
+  transform: translate(-1%, 11%);
+}
+
+.event-index-edit {
+  transform: translate(0, 9%);
 }
 
 .dept-tag {
@@ -429,13 +434,21 @@ span.event-end-time {
   display: inline-block;
   float: right;
   position: relative;
-  top: -62px;
-  left: 25px;
+    top: -62px;
+    left: 25px;
   li a {
     @include border-radius(2px);
     @include the-box-shadow;
     margin: 0;
   }
+}
+
+.event-show-edit-button {
+  transform: translate(1%, 11%)
+}
+
+.event-show-delete-button {
+  transform: translate(-1%, 14%);
 }
 
 .event-show-info {
