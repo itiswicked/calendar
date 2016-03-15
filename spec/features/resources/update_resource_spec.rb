@@ -35,13 +35,14 @@ feature 'user updates resource', js: true do
   before(:each) do
     login_as(user, scope: :user)
     visit event_path(event)
-    within(first("table")) { click_link 'Edit' }
+    find(:css, ".resource-edit", visible: false).click
+      # edit action, name of materails icon is create
   end
 
   scenario 'successfully' do
     within(first("table")) do
       fill_in "resource-quantity-update#{resource.id}", with: 50
-      click_button 'Update'
+      find(:css, ".resource-update", visible: false).click
     end
     expect(first("table")).to have_content '50'
     expect(first("table")).to_not have_content '4'
@@ -52,7 +53,7 @@ feature 'user updates resource', js: true do
   scenario 'unsuccessfully, rerenders edit form' do
     within(first("table")) do
       fill_in "resource-quantity-update#{resource.id}", with: 'Not a number'
-      click_button 'Update'
+      find(:css, ".resource-update", visible: false).click
     end
 
     input_value = find(:css, "#resource-quantity-update#{resource.id}").value

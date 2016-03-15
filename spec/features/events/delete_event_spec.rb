@@ -21,7 +21,7 @@ feature 'user deletes event' do
     date = event.start_time
     event_title = event.title
     login_as(user, scope: :user)
-    visit event_path event
+    visit event_path(event)
     within(:xpath, '//div[contains(@class, "event-show-buttons")]') do
       click_link 'clear'
     end

@@ -17,7 +17,7 @@ feature 'user deletes resource' do
     visit event_path(resource.event)
 
     within first("table") do |table|
-      click_link 'Delete'
+      click_link 'clear'
       expect(table).to_not have_content name
     end
 
