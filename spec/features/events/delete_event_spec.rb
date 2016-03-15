@@ -21,8 +21,10 @@ feature 'user deletes event' do
     date = event.start_time
     event_title = event.title
     login_as(user, scope: :user)
-    visit event_path event
-    click_link 'Delete'
+    visit event_path(event)
+    within(:xpath, '//div[contains(@class, "event-show-buttons")]') do
+      click_link 'clear' # name of materials icon, for delete action
+    end
 
     expect(page).to have_content date.strftime("%A %b %-d, %Y").upcase
     expect(page).to_not have_content event_title

@@ -16,7 +16,6 @@ class ResourcesController < ApplicationController
   end
 
   def edit
-binding.pry
     @resource = Resource.find(params[:id])
     @event = @resource.event
     @categories_select = InventoryItem.categories_select

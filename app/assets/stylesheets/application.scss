@@ -28,9 +28,9 @@ $charcoal: #666;
 $light-gray: #ddd;
 $white: #fff;
 $light-red: #ff8585;
+$blue: #008CBA;
 
 // MIXINS, ETC
-
 @mixin border-radius($radius) {
   border-radius: $radius;
 }
@@ -45,6 +45,12 @@ $light-red: #ff8585;
   min-height: 100%;
 }
 
+@mixin display-buttons {
+  float: right;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
 body {
   background-image: image-url("mooning.png");
   background-position: center center;
@@ -52,8 +58,12 @@ body {
   background-size: auto;
 }
 
-input, textarea {
-  margin: 0 0 8px 0 !important;
+label {
+  font-size: 13px;
+}
+
+input, textarea, select {
+  margin-bottom: 0 !important;
 }
 
 .bold {
@@ -88,10 +98,6 @@ hr {
 .the-enforcer {
   margin: auto;
   height: 18px;
-}
-
-.button {
-  margin: 0 !important;
 }
 
 // SPLASH
@@ -170,7 +176,7 @@ hr {
   background-color: $white;
   padding: 0;
   h4 {
-    color: #008CBA;
+    color: $blue;
     margin: 3px 0;
   }
 }
@@ -194,12 +200,16 @@ hr {
 .date {
   display: table-cell;
   vertical-align: middle;
-  a { color: $charcoal; }
+  a {
+    color: $charcoal;
+  }
 }
 
 .today {
   background-color: $light-red;
-  a { color: white; }
+  a {
+    color: white;
+  }
 }
 
 .event-today {
@@ -208,7 +218,9 @@ hr {
 
 .grayout {
   border: $very-light-gray-border;
-  a { color: $light-gray; }
+  a {
+    color: $light-gray;
+  }
 }
 
 // EVENTS
@@ -287,6 +299,10 @@ hr {
   padding-left: 10px;
 }
 
+.event-form-button {
+  margin-top: 10px;
+}
+
 .event {
   @include the-box-shadow;
   background-color: white;
@@ -294,8 +310,7 @@ hr {
   height: 80px;
   .event-buttons { opacity: 0; }
   &:hover .event-buttons {
-    opacity: 1;
-    transition: all 0.2s ease-in-out;
+    @include display-buttons;
     display: inline-block;
     float: right;
     clear: right;
@@ -317,7 +332,7 @@ hr {
 
 .event-time-index {
   padding: 0;
-  background-color: #008CBA;
+  background-color: $blue;
   width: 130px;
   height: 80px;
   span {
@@ -354,16 +369,21 @@ span.event-end-time {
   justify-content: center;
   align-items: center;
   @include border-radius(15px);
-  i {
-    transform: translate(0, 9%);
-  }
+}
+
+.event-index-delete {
+  transform: translate(-1%, 11%);
+}
+
+.event-index-edit {
+  transform: translate(0, 9%);
 }
 
 .dept-tag {
   padding: 3px 6px;
   color: #fff;
   border-radius: 15px;
-  background: linear-gradient(to bottom, #28B0DE 0%, #008CBA 100%);
+  background: linear-gradient(to bottom, #28B0DE 0%, $blue 100%);
   font-size: 9pt;
 }
 
@@ -376,22 +396,46 @@ span.event-end-time {
 }
 
 // EVENT SHOW PAGE
-.event-show {
-  background-color: white;
-  border: $light-gray-border;
+.event-show-wrapper {
   margin: $the-enforcer;
-  width: 80%;
-  padding: 10px;
-  @include border-radius(4px);
+  width: 700px;
+}
+
+.event-show {
+  background-color: $white;
+  padding: 4px 10px 4px 10px;
   @include the-box-shadow;
-  max-width: none;
-  p {
+  h3, p {
     margin: 0;
+  }
+  p {
+    font-size: 14px;
+  }
+  hr {
+    margin: 3px;
+    color: $blue;
+  }
+  &:hover .event-show-buttons {
+    @include display-buttons;
+  }
+}
+
+.event-show-title {
+  border-bottom: 2px solid $blue;
+  display: inline-block;
+  width: 100%;
+  h3 {
+    margin-bottom: 4px;
   }
 }
 
 .event-show-buttons {
-  transform: translate(10%, 25%);
+  opacity: 0;
+  display: inline-block;
+  float: right;
+  position: relative;
+    top: -62px;
+    left: 25px;
   li a {
     @include border-radius(2px);
     @include the-box-shadow;
@@ -399,41 +443,105 @@ span.event-end-time {
   }
 }
 
+.event-show-edit-button {
+  transform: translate(1%, 11%);
+}
+
+.event-show-delete-button {
+  transform: translate(-1%, 13%);
+}
+
+.event-show-info {
+  color: $charcoal;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.event-show-date-container, .event-show-time-container {
+  display: inline;
+}
+
+.event-show-date-container {
+  padding-right: 5px;
+}
+
+.event-show-time-container {
+  padding-left: 5px;
+}
+
+.event-show-clock, .event-show-cal {
+  transform: translate(0, 24%);
+  font-size: 20px;
+}
+
 .event-show-time {
   text-align: center;
-  min-width: 120px;
-  p { margin: 5px; }
 }
 
 // RESOURCES
 .resource-category {
   background-color: white;
-  padding: 10px 30px;
-  width: 80%;
+  padding: 10px;
   margin: 20px auto;
-  border: $light-gray-border;
-  @include border-radius(4px);
   @include the-box-shadow;
-}
-
-.resource-table {
-  width: 100%;
-  a {
-    @include border-radius(2px);
-    @include the-box-shadow;
+  h3 {
+    margin: 0;
   }
 }
 
-td .button {
-  margin: 0;
+.resource-select {
+  padding-right: 5px;
+  padding-left: 0;
+}
+
+.resource-quantity-field {
+  padding-right: 0;
+  padding-left: 5px;
+}
+
+.resource-add-button {
+  font-size: 18px;
+  padding: 6px 8px;
+  margin-top: 20px;
+}
+
+select.select-box,
+input.quantity-box,
+input.resource-add-button {
+  height: 33px;
+}
+
+.resource-table {
+  border-collapse: collapse;
+  border: none;
+  width: 100%;
+  margin-bottom: 10px;
+  thead {
+    background: #fff;
+    th { border-bottom: 2px solid $blue; }
+  }
+}
+
+tr.resource-row {
+  height: 35px;
+  border-bottom: 1px dashed $light-gray;
+  &:hover .resource-buttons {
+    @include display-buttons;
+    position: relative;
+      top: 2px;
+  }
 }
 
 .resource-column {
-  width: 120px;
+  width: 180px;
+}
+
+.resource-column, .notes-column, .quantity-column {
+  padding: 3px 0;
 }
 
 .quantity-column {
-  width: 220px;
+  width: 120px;
   position: relative;
   span {
     position: absolute;
@@ -443,9 +551,23 @@ td .button {
 }
 
 .resource-buttons {
+  opacity: 0;
+}
+
+.resource-update-quantity {
+  display: block;
+}
+
+.resource-update-quantity-field-container {
+  display: inline-block;
+}
+
+.resource-update-quantity-field-submit-container {
+  display: inline-block;
   float: right;
 }
 
-body div article table tbody tr td.quantity-column form div div input.resource-quantity-update {
-  margin-bottom: 0;
+input.resource-update-quantity-field {
+  height: 28px;
+  width: 60px;
 }

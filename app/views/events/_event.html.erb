@@ -12,10 +12,10 @@
           <h3 class="event-title"><%= link_to event.title, event_path(event) %></h3>
           <div class="event-buttons">
             <div class="circle-button">
-              <%= link_to '<i class="material-icons">create</i>'.html_safe, edit_event_path(event) %>
+              <%= link_to '<i class="material-icons event-index-edit">create</i>'.html_safe, edit_event_path(event) %>
             </div>
             <div class="circle-button">
-              <%= link_to '<i class="material-icons">clear</i>'.html_safe, event_path(event), method: :delete %>
+              <%= link_to '<i class="material-icons event-index-delete">clear</i>'.html_safe, event_path(event), method: :delete %>
             </div>
           </div>
         </div>
@@ -41,5 +41,4 @@
       </div>
     </div>
   </div>
-
 </article>

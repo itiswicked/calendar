@@ -21,7 +21,9 @@ feature 'user edits events' do
   scenario 'successfully, redirects to event show page' do
     login_as(user, scope: :user)
     visit event_path(event)
-    click_link 'Edit'
+    within(:xpath, "//div[contains(@class, 'event-show-buttons')]") do
+      click_link 'create' # name of materials icon
+    end
 
     title_value = find_by_id("event_title").value
     expect(title_value).to eq event.title
@@ -39,7 +41,7 @@ feature 'user edits events' do
     fill_in 'Description', with: 'Setup lighting package #1, sound package #2'
     fill_in 'Start Time', with: datetime
     fill_in 'End Time', with: (datetime + 3.hours)
-    click_button 'Submit'
+    click_button 'Update'
 
     expect(page).to have_content 'GE Conference'
     expect(page.current_path).to eq "/events/#{event.id}"
