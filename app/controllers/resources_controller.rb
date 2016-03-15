@@ -34,7 +34,6 @@ class ResourcesController < ApplicationController
   end
 
   def destroy
-binding.pry
     @resource = Resource.find(params[:id])
     @resource.destroy
     redirect_to @resource.event

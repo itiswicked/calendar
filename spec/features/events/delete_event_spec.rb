@@ -22,7 +22,9 @@ feature 'user deletes event' do
     event_title = event.title
     login_as(user, scope: :user)
     visit event_path event
-    click_link 'Delete'
+    within(:xpath, '//div[contains(@class, "event-show-buttons")]') do
+      click_link 'clear'
+    end
 
     expect(page).to have_content date.strftime("%A %b %-d, %Y").upcase
     expect(page).to_not have_content event_title

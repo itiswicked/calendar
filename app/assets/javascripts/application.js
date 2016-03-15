@@ -66,7 +66,6 @@ var ResourceDeleteListener = function() {
       type: "json",
       url: url,
       success: function(){
-        debugger;
         anchor.parents()[2].remove();
       }
     });

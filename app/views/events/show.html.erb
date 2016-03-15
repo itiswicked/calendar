@@ -3,6 +3,14 @@
     <div class="event-show-title">
       <h3><%= @event.title %></h3>
     </div>
+    <div class="event-show-buttons">
+      <div class="circle-button">
+        <%= link_to '<i class="material-icons">create</i>'.html_safe, edit_event_path(@event) %>
+      </div>
+      <div class="circle-button">
+        <%= link_to '<i class="material-icons">clear</i>'.html_safe, event_path(@event), method: :delete %>
+      </div>
+    </div>
     <div class="event-show-description">
       <p><%= @event.description %></p>
     </div>
@@ -58,14 +66,4 @@
 
     </article>
   <% end %>
-</div>
-
-
-<div class="event-show-buttons">
-  <div class="circle-button">
-    <%= link_to '<i class="material-icons">create</i>'.html_safe, edit_event_path(@event) %>
-  </div>
-  <div class="circle-button">
-    <%= link_to '<i class="material-icons">clear</i>'.html_safe, event_path(@event), method: :delete %>
-  </div>
 </div>

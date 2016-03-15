@@ -51,7 +51,6 @@ class EventsController < ApplicationController
   end
 
   def destroy
-binding.pry
     @event = Event.find(params[:id])
     @date = @event.start_time
     @event.destroy

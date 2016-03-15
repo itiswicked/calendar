@@ -21,6 +21,7 @@ feature 'user edits events' do
   scenario 'successfully, redirects to event show page' do
     login_as(user, scope: :user)
     visit event_path(event)
+save_and_open_page
     click_link 'Edit'
 
     title_value = find_by_id("event_title").value
