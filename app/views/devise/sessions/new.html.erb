@@ -2,50 +2,24 @@
 <div class="splash">
   <div class="splash-title">
     <h1>EventCal.</h1>
-    <h3>The world's most powerful</h3>
-    <h3>resource-driven event management application.</h3>
+    <h3>Powerful Resource-driven event management</h3>
   </div>
   <div class="login-form">
     <%= form_for(resource, arails: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="row">
-        <div class="small-12 columns">
-          <div class="row">
-            <div class="field">
-              <div class="small-2 columns">
-                <%= f.label :email, class: "left inline" %>
-              </div>
-              <div class="small-10 columns">
-                <%= f.email_field :email, autofocus: true %>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="field">
-              <div class="small-2 columns">
-                <%= f.label :password, class: "left inline" %>
-              </div>
-              <div class="small-10 columns">
-                <%= f.password_field :password, autocomplete: "off" %>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <% if devise_mapping.rememberable? -%>
-            <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
-            </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-    <div class="actions button-group login-buttons">
-      <%= f.submit "Log in", class: "button radius small" %>
-      <%= link_to "Sign in with Github",
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true %>
+      <%= f.label :password, class: 'password-label' %>
+      <%= f.password_field :password, autocomplete: "off" %>
+      <% if devise_mapping.rememberable? -%>
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me, class: 'remember-me-label' %>
+        <%= link_to 'Sign Up', new_user_registration_path, class: 'sign-up-link' %>
+      <% end %>
+        <%= f.submit "Sign in", class: "button small login-button" %>
+        <%= link_to "Sign in with Github <span class='octicon octicon-mark-github github-logo'></span>".html_safe,
           omniauth_authorize_path(resource_name, "github"),
-          class: "button radius small"
-       %>
-    </div>
-  <% end %>
+          class: "button small login-button"
+        %>
+    <% end %>
+  </div>
 </div>
