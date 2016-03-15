@@ -18,7 +18,6 @@
     </div>
   </article>
 
-
   <% @categories.each do |category| %>
     <article class="resource-category">
       <h3><%= category %></h3>
@@ -39,11 +38,11 @@
                 <span><%= resource.quantity %></span>
                 <div class="resource-buttons">
                   <%= link_to '<i class="material-icons">create</i>'.html_safe,
-                      edit_event_resource_path(@event, resource),
+                      event_resource_path(@event, resource),
                       class: "resource-edit",
                       resource_id: resource.id
                   %>
-                  <%= link_to '<i class="material-icons">clear</i>'.html_safe,
+                  <%= link_to '<i class="material-icons delete">clear</i>'.html_safe,
                       api_resource_path(resource),
                       method: :delete,
                       class: "resource-delete",

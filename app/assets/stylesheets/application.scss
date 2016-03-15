@@ -533,6 +533,20 @@ tr.resource-row {
   opacity: 0;
 }
 
-body div article table tbody tr td.quantity-column form div div input.resource-quantity-update {
-  margin-bottom: 0;
+.resource-update-quantity {
+  display: block;
+}
+
+.resource-update-quantity-field-container {
+  display: inline-block;
+}
+
+.resource-update-quantity-field-submit-container {
+  display: inline-block;
+  float: right;
+}
+
+input.resource-update-quantity-field {
+  height: 28px;
+  width: 60px;
 }
