@@ -17,7 +17,7 @@ feature 'user deletes resource' do
     visit event_path(resource.event)
 
     within first("table") do |table|
-      click_link 'clear'
+      click_link 'clear' # clear is a materials icon name for delete action
       expect(table).to_not have_content name
     end
 
