@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
+ *= require sprockets-octicons
  */
 
  // VARIABLES
@@ -70,20 +71,9 @@ input, textarea, select {
   font-weight: bold;
 }
 
-.shadow {
-  &:hover {
-    box-shadow: 5px 5px 20px rgba(136,136,136,0.8);
-    transition: all 0.2s ease-in-out;
-  }
-}
-
 hr {
   margin-top: 10px;
   margin-bottom: 10px;
-}
-
-.login-buttons {
-  text-align: center;
 }
 
 // GENERAL
@@ -101,21 +91,54 @@ hr {
 }
 
 // SPLASH
-.login-form {
-  margin: 20px auto;
-  padding: 15px;
-  background-color:rgba(255,255,255,0.8);
-  width: 450px;
-  @include the-box-shadow;
-  @include border-radius(5px);
-  a, input {
-    margin-bottom: 0;
-  }
-}
-
 .splash-title {
   text-align: center;
   padding-top: 30px;
+}
+
+.login-form {
+  margin: 20px auto;
+  padding: 10px;
+  background-color:rgba(255,255,255,0.8);
+  width: 300px;
+  @include the-box-shadow;
+}
+
+.login-button {
+  display: block;
+  width: 100%;
+}
+
+.password-label {
+  margin-top: 6px;
+}
+
+.remember-me-label {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+input.login-button {
+  margin-top: 3px;
+  margin-bottom: 5px !important;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+a.login-button {
+  margin-top: 5px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  span {
+    font-size: 24px;
+    transform: translate(0, 4%);
+  }
+}
+
+.sign-up-link {
+  margin-top: 4px;
+  float: right;
+  font-size: 13px;
 }
 
 // CALENDAR TOP LEVEL
