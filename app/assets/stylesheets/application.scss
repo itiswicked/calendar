@@ -18,6 +18,8 @@
 
  // VARIABLES
 
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,500italic);
+
 $the-enforcer: 35px auto 0px auto;
 
 $basic-border: 1px solid black;
@@ -30,6 +32,9 @@ $light-gray: #ddd;
 $white: #fff;
 $light-red: #ff8585;
 $blue: #008CBA;
+$faint-blue: #8fafcf;
+
+$fancy-font: 'Playball', cursive;
 
 // MIXINS, ETC
 @mixin border-radius($radius) {
@@ -81,6 +86,12 @@ hr {
   box-shadow: 0 8px 12px rgba(0,0,0,0.12), 0 8px 12px rgba(0,0,0,0.24);
 }
 
+.header-title {
+  font-family: $fancy-font;
+  font-size: 20px !important;
+  color: $blue;
+}
+
 .alert-box {
   margin-bottom: 0;
 }
@@ -90,10 +101,35 @@ hr {
   height: 18px;
 }
 
+@import url(https://fonts.googleapis.com/css?family=Playball);
+$stroke: 1px $light-gray;
 // SPLASH
 .splash-title {
+  h1 { font-size: 72px; }
+  h3 { font-size: 44px; }
+  h1, h3 {
+    font-weight: bold;
+  }
   text-align: center;
   padding-top: 30px;
+}
+
+.title1 {
+  text-shadow: -1px 2px $faint-blue;
+}
+
+.title2 {
+  font-size: 80px;
+  color: $blue;
+  font-family: $fancy-font;
+  text-shadow: 2px 2px #ff4141;
+}
+
+.subtitle-left {
+  text-shadow: 1px -1px $faint-blue;
+}
+.subtitle-right {
+  text-shadow: -1px -1px $faint-blue;
 }
 
 .login-form {

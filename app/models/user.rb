@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
     return email unless username.nil? || username.empty?
     "User"
   end
+
+  def self.catagories_for_dropdown
+    all.map { |user| [user.name. user.id] }
+  end
 end
