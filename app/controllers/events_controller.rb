@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     @tomorrow = tomorrow
     @event = Event.new
     @events = Event.find_by_date(@date).order(:start_time)
-    @button_text = "Add"
+    @button_text = "Add Event"
   end
 
   def new
