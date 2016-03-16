@@ -1,8 +1,10 @@
 <%= stylesheet_link_tag params[:controller] %>
 <div class="splash">
   <div class="splash-title">
-    <h1>EventCal.</h1>
-    <h3>Powerful Resource-driven event management</h3>
+    <h1><span class="title1">Event</span><span class="title2">Cal</span></h1>
+    <h3>
+      <span class="subtitle-left">Powerful Resource-dri</span><span class="subtitle-right">ven Event Management</span>
+    </h3>
   </div>
   <div class="login-form">
     <%= form_for(resource, arails: resource_name, url: session_path(resource_name)) do |f| %>
