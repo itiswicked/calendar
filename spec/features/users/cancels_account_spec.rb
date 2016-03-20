@@ -24,7 +24,9 @@ feature 'user cancels account' do
 
     fill_in "Email", with: user.email
     fill_in "Password", with: 'password'
-    click_button "Log in"
+    within('.login-form') do
+      click_button "Sign in"
+    end
 
     expect(page).to have_content "Invalid email or password."
   end
