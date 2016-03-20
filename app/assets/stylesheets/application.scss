@@ -109,13 +109,13 @@ hr {
 $stroke: 1px $light-gray;
 // SPLASH
 .splash-title {
+  margin-top:  30px;
+  text-align: center;
   h1 { font-size: 72px; }
   h3 { font-size: 44px; }
   h1, h3 {
     font-weight: bold;
   }
-  text-align: center;
-  padding-top: 30px;
 }
 
 .title1 {
@@ -136,8 +136,17 @@ $stroke: 1px $light-gray;
   text-shadow: -1px -1px $faint-blue;
 }
 
+.continue-button {
+  width: 284px;
+  padding: 10px;
+  margin: 30px auto;
+}
+
 .login-form {
-  margin: 20px auto;
+  opacity: 0;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 10px;
   background-color:rgba(255,255,255,0.8);
   width: 300px;

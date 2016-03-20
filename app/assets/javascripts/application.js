@@ -109,10 +109,32 @@ var resourceUpdateListener = function() {
   });
 }
 
+var continueButtonListener = function() {
+  $(document).on('click', '.continue-button', function(event) {
+    event.preventDefault();
+    revealSignInForm();
+  })
+}
+
+var revealSignInForm = function() {
+  $('.splash-title')
+    .animate({ marginTop: 100 }, 'slow');
+
+  $('.sub-title-wrapper')
+    .animate({ opacity: 0 }, 'slow');
+
+  $('.splash-title-name')
+    .animate({ marginBottom: 0 }, 'slow');
+
+  $('.login-form')
+    .animate({ marginTop: -140, opacity: 1 }, 'slow');
+}
+
 var callAllListeners = function() {
   resourceEditListener();
   resourceUpdateListener();
   ResourceDeleteListener();
+  continueButtonListener();
 }
 
 $(document).ready(function() {
