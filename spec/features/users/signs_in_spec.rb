@@ -16,13 +16,14 @@ feature 'user signs in' do
 
   before(:each) do
     visit '/'
-    click_link 'Log In'
   end
 
   scenario 'is successful' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'password'
-    click_button 'Log in'
+    within('.login-form') do
+      click_button 'Sign in'
+    end
 
     expect(page.current_path).to eq '/months'
     expect(page).to have_content 'Signed in successfully'
@@ -33,7 +34,9 @@ feature 'user signs in' do
   scenario 'has incorrect email or password' do
     fill_in 'Email', with: 'incorrect_email@mail.com'
     fill_in 'Password', with: 'incorrect_password'
-    click_button 'Log in'
+    within('.login-form') do
+      click_button 'Sign in'
+    end
 
     expect(page.current_path).to eq '/users/sign_in'
     expect(page).to have_content "Invalid email or password."
