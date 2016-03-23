@@ -4,12 +4,9 @@ class MonthsController < ApplicationController
   def index
     @month = Month.new(month_params)
     @month.create!
-    first_date = @month.data.first[:date].strftime("%Y-%m-%d")
-    last_date = @month.data.last[:date].strftime("%Y-%m-%d")
+    first_date = @month.data.first.date.to_s
+    last_date = @month.data.last.date.to_s
     @events = Event.find_by_date_range(first_date, last_date)
-    @month.data.each do |date|
-      date_has_event?(date[:date], @events) ? date[:event] = true : date[:event] = false
-    end
   end
 
   private

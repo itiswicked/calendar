@@ -1,27 +1,27 @@
 class Month
   attr_reader :year, :month, :data
-  def initialize(info_hash)
-    @year = (info_hash[:year] || Time.now.year).to_i
-    @month = (info_hash[:month] || Time.now.month).to_i
+  def initialize(params)
+    @year = (params[:year] || Time.now.year).to_i
+    @month = (params[:month] || Time.now.month).to_i
   end
 
   def create!
-    @data = (1..num_of_days)
-      .map { |day| create_day(@year, @month, day) }
+    @data = (1..days_in_month)
+      .map { |day| Day.new(@year, @month, day) }
       .unshift(prepend_month)
       .push(append_month)
       .flatten
   end
 
-  def last_m
+  def last_month
     jump_month(:-)
   end
 
-  def next_m
+  def next_month
     jump_month(:+)
   end
 
-  def num_of_days
+  def days_in_month
     Time.days_in_month(@month, @year)
   end
 
@@ -31,15 +31,6 @@ class Month
 
 
   private
-
-    def create_day(year, month, date)
-      time = Time.new(year, month, date)
-      {
-        date: time,
-        in_month: in_month?(time),
-        today: is_today?(time)
-      }
-    end
 
     def time_obj
       Time.new(@year, @month, 1)
@@ -55,21 +46,21 @@ class Month
     end
 
     def weekday_of_last
-      Time.new(@year, @month, num_of_days).wday
+      Time.new(@year, @month, days_in_month).wday
     end
 
     def prepend_month
-      (1..last_m.num_of_days)
+      (1..last_month.days_in_month)
         .to_a
         .last(weekday_of_first)
-        .map { |n| create_day(last_m.year, last_m.month, n) }
+        .map { |n| Day.new(last_month.year, last_month.month, n) }
     end
 
     def append_month
-      (1..next_m.num_of_days)
+      (1..next_month.days_in_month)
         .to_a
         .first(6 - weekday_of_last)
-        .map  { |n| create_day(next_m.year, next_m.month, n) }
+        .map { |n| Day.new(next_month.year, next_month.month, n) }
     end
 
     def is_today?(date)
