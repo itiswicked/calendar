@@ -1,0 +1,86 @@
+@import 'foundation_and_overrides';
+@import 'variables_and_fonts';
+@import 'mixins';
+
+.splash-title {
+  margin-top:  30px;
+  text-align: center;
+  h1 { font-size: 72px; }
+  h3 { font-size: 44px; }
+  h1, h3 {
+    font-weight: bold;
+  }
+}
+
+.title1 {
+  text-shadow: -1px 2px $faint-blue;
+}
+
+.title2 {
+  font-size: 80px;
+  color: $blue;
+  font-family: $fancy-font;
+  text-shadow: 1px 1px #ff4141;
+}
+
+.subtitle-left {
+  text-shadow: 1px -1px $faint-blue;
+}
+.subtitle-right {
+  text-shadow: -1px -1px $faint-blue;
+}
+
+.continue-button {
+  width: 284px;
+  padding: 10px;
+  margin: 30px auto;
+}
+
+.login-form {
+  opacity: 0;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  background-color:rgba(255,255,255,0.8);
+  width: 300px;
+  @include the-box-shadow;
+}
+
+.login-button {
+  display: block;
+  width: 100%;
+}
+
+.password-label {
+  margin-top: 6px;
+}
+
+.remember-me-label {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+input.login-button {
+  height: 41px;
+  margin-top: 3px;
+  margin-bottom: 5px !important;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+a.login-button {
+  margin-top: 5px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  span {
+    font-size: 24px;
+    transform: translate(0, 4%);
+  }
+}
+
+.sign-up-link {
+  margin-top: 4px;
+  float: right;
+  font-size: 13px;
+}
