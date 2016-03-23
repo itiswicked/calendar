@@ -1,0 +1,98 @@
+@import 'foundation_and_overrides';
+@import 'variables_and_fonts';
+@import 'mixins';
+
+.resource-category {
+  background-color: white;
+  padding: 10px;
+  margin: 20px auto;
+  @include the-box-shadow;
+  h3 {
+    margin: 0;
+  }
+}
+
+.resource-select {
+  padding-right: 5px;
+  padding-left: 0;
+}
+
+.resource-quantity-field {
+  padding-right: 0;
+  padding-left: 5px;
+}
+
+.resource-add-button {
+  font-size: 18px;
+  padding: 6px 8px;
+  margin-top: 20px;
+}
+
+select.select-box,
+input.quantity-box,
+input.resource-add-button {
+  height: 33px;
+}
+
+.resource-table {
+  border-collapse: collapse;
+  border: none;
+  width: 100%;
+  margin-bottom: 10px;
+  thead {
+    background: #fff;
+    th { border-bottom: 2px solid $blue; }
+  }
+}
+
+tr.resource-row {
+  height: 35px;
+  border-bottom: 1px dashed $light-gray;
+  &:hover .resource-buttons {
+    @include display-buttons;
+    position: relative;
+      top: 2px;
+  }
+}
+
+.resource-column {
+  width: 180px;
+}
+
+.resource-column,
+.notes-column,
+.quantity-column {
+  padding: 3px 0;
+}
+
+.quantity-column {
+  width: 120px;
+  position: relative;
+  span {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+.resource-buttons {
+  opacity: 0;
+}
+
+.resource-update-quantity {
+  display: block;
+}
+
+.resource-update-quantity-field-container {
+  display: inline-block;
+}
+
+.resource-update-quantity-field-submit-container {
+  display: inline-block;
+  float: right;
+}
+
+input.resource-update-quantity-field {
+  height: 28px;
+  width: 60px;
+}
