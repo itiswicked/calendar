@@ -5,11 +5,11 @@
     </div>
     <div class="cal-nav">
       <%= link_to '<i class="material-icons">keyboard_arrow_left</i>'.html_safe,
-          request.params.merge(month: @month.last_m.month, year: @month.last_m.year)
+          request.params.merge(month: @month.last_month.month, year: @month.last_month.year)
       %>
       <%= link_to '<i class="material-icons today-link">today</i>'.html_safe, months_path %>
       <%= link_to '<i class="material-icons">keyboard_arrow_right</i>'.html_safe,
-        request.params.merge(month: @month.next_m.month, year: @month.next_m.year)
+        request.params.merge(month: @month.next_month.month, year: @month.next_month.year)
       %>
     </div>
   </div>
@@ -29,25 +29,25 @@
     </thead>
 
     <tbody>
-      <% @month.data.each_slice(7) do |week| %>
+      <% @month.weeks.each do |week| %>
         <tr>
           <% week.each do |day| %>
-          <td class>
-            <div class="cell <%= 'today' if day[:today] %> <%= 'event-today' if day[:event] %> <%= 'grayout' unless day[:in_month] %>">
-              <h2 class="date">
-                <%= link_to day[:date].day, events_path(
-                      day: day[:date].day,
-                      month: day[:date].month,
-                      year: day[:date].year
-                    )
-                %>
-              </h2>
-            </div>
-          </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
+            <td>
+              <div class="cell <%= 'today' if day.today? %> <%= 'event-today' if day.has_events? %> <%= 'grayout' unless day.in_month?(@month.year, @month.month) %>">
+                <h2 class="date">
+                  <%= link_to day.date, events_path(
+                        day: day.date,
+                        month: day.month,
+                        year: day.year
+                      )
+                  %>
+                </h2>
+              </div>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
   </div>
 </table>
 </div>

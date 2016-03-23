@@ -1,82 +1,75 @@
 class Month
   attr_reader :year, :month, :data
-  def initialize(info_hash)
-    @year = (info_hash[:year] || Time.now.year).to_i
-    @month = (info_hash[:month] || Time.now.month).to_i
+
+  def initialize(year, month)
+    @year = (year || Time.now.year).to_i
+    @month = (month || Time.now.month).to_i
   end
 
-  def create!
-    @data = (1..num_of_days)
-      .map { |day| create_day(@year, @month, day) }
+  def days
+    @days ||= (1..days_in_month)
+      .map { |day| Day.new(@year, @month, day) }
       .unshift(prepend_month)
       .push(append_month)
       .flatten
   end
 
-  def last_m
-    jump_month(:-)
+  def weeks
+    @weeks ||= days.each_slice(7).to_a
   end
 
-  def next_m
-    jump_month(:+)
+  def last_month
+    get_relative_month(:-)
   end
 
-  def num_of_days
-    Time.days_in_month(@month, @year)
+  def next_month
+    get_relative_month(:+)
+  end
+
+  def days_in_month
+    @days_in_month ||= Time.days_in_month(@month, @year)
   end
 
   def name
-    time_obj.strftime("%B")
+    time.strftime("%B")
+  end
+
+  def first_day
+    days.first
+  end
+
+  def last_day
+    days.last
   end
 
 
   private
 
-    def create_day(year, month, date)
-      time = Time.new(year, month, date)
-      {
-        date: time,
-        in_month: in_month?(time),
-        today: is_today?(time)
-      }
+    def time
+      @time ||= Time.new(@year, @month, 1)
     end
 
-    def time_obj
-      Time.new(@year, @month, 1)
+    def get_relative_month(operator)
+      target_month = time.send(operator, 1.month)
+      Month.new(target_month.year, target_month.month)
     end
 
-    def jump_month(operator)
-      t = time_obj.send(operator, 1.month)
-      Month.new(year: t.year, month: t.month)
+    def first_week_day
+      time.wday
     end
 
-    def weekday_of_first
-      time_obj.wday
-    end
-
-    def weekday_of_last
-      Time.new(@year, @month, num_of_days).wday
+    def last_week_day
+      Time.new(@year, @month, days_in_month).wday
     end
 
     def prepend_month
-      (1..last_m.num_of_days)
-        .to_a
-        .last(weekday_of_first)
-        .map { |n| create_day(last_m.year, last_m.month, n) }
+      last_day = last_month.days_in_month
+      ((last_day - first_week_day + 1)..last_day)
+        .map { |n| Day.new(last_month.year, last_month.month, n) }
     end
 
     def append_month
-      (1..next_m.num_of_days)
-        .to_a
-        .first(6 - weekday_of_last)
-        .map  { |n| create_day(next_m.year, next_m.month, n) }
-    end
-
-    def is_today?(date)
-      Time.at(date).to_date === Time.at(Time.now).to_date
-    end
-
-    def in_month?(date)
-      @month == date.month && @year == date.year
+      (1..(6 - last_week_day))
+        .map { |n| Day.new(next_month.year, next_month.month, n) }
     end
 end
