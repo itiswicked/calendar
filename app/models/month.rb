@@ -1,5 +1,6 @@
 class Month
   attr_reader :year, :month, :data
+
   def initialize(year, month)
     @year = (year || Time.now.year).to_i
     @month = (month || Time.now.month).to_i
@@ -15,7 +16,6 @@ class Month
 
   def weeks
     @weeks ||= days.each_slice(7).to_a
-    # binding.pry
   end
 
   def last_month
