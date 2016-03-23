@@ -8,9 +8,9 @@ class Event < ActiveRecord::Base
   validates_datetime :end_time, after: :start_time,
                      after_message: 'Sorry, you can\'t create an event that ends before it starts.'
   validates_date :start_time, is_at: :end_time,
-                 is_at_message: "Sorry, event must start and finish on same day."
+                 is_at_message: 'Sorry, event must start and finish on same day.'
   validates_date :end_time, is_at: :start_time,
-                 is_at_message: "Sorry, event must start and finish on same day."
+                 is_at_message: 'Sorry, event must start and finish on same day.'
 
   def self.find_by_date_range(start_date, end_date)
     where("start_time >= ? AND end_time < ?", start_date, end_date)

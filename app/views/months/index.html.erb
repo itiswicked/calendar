@@ -29,13 +29,13 @@
     </thead>
 
     <tbody>
-      <% @month.data.each_slice(7) do |week| %>
+
+      <% @month.weeks.each do |week| %>
         <tr>
           <% week.each do |day| %>
           <td class>
-            <div class="cell <%= 'today' if day.today? %> <%= 'event-today' if day.has_events? %> <%= 'grayout' unless day.in_month?(@month) %>">
+            <div class="cell <%= 'today' if day.today? %> <%= 'event-today' if day.has_events? %> <%= 'grayout' unless day.in_month?(@month.year, @month.month) %>">
               <h2 class="date">
-
                 <%= link_to day.date, events_path(
                       day: day.date,
                       month: day.month,
