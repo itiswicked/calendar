@@ -121,13 +121,14 @@ var revealSignInForm = function() {
     .animate({ marginTop: 100 }, 'slow');
 
   $('.sub-title-wrapper')
-    .animate({ opacity: 0 }, 'slow');
+    .animate({ opacity: 0 }, 'slow')
+    .remove();
 
   $('.splash-title-name')
     .animate({ marginBottom: 0 }, 'slow');
 
   $('.login-form')
-    .animate({ marginTop: -140, opacity: 1 }, 'slow');
+    .animate({ marginTop: 0, opacity: 1 }, 'slow');
 }
 
 var callAllListeners = function() {
