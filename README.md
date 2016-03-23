@@ -10,9 +10,9 @@ This is my final project for Launch Academy.
 
 Go To [event-cal.herokuapp.com](http://event-cal.herokuapp.com/)
 
-#### The Cool Stuff
+#### Code Samples
 
-Check out the PORO classes for instantiating a calendar data structure:
+Check out these PORO classes for instantiating a calendar data structure:
 
 [Month.rb](https://github.com/itiswicked/calendar/blob/master/app%2Fmodels%2Fmonth.rb)
 
