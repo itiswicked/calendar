@@ -1,8 +1,8 @@
 class Month
   attr_reader :year, :month, :data
   def initialize(year, month)
-    @year = year || Time.now.year
-    @month = month || Time.now.month
+    @year = (year || Time.now.year).to_i
+    @month = (month || Time.now.month).to_i
   end
 
   def days
