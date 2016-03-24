@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
     uid = auth.uid
 
     find_or_create_by(provider: provider, uid: uid) do |user|
-      name = auth.info.name.split(' ')
+      name = auth.info.name.split(" ")
       user.first_name = name[0]
       user.last_name = name[1]
       user.provider = provider
@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   def identifier
     return first_name unless first_name.nil? || first_name.empty?
     return username unless username.nil? || username.empty?
-    return email unless username.nil? || username.empty?
+    return email unless email.nil? || email.empty?
     "User"
   end
 
