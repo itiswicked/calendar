@@ -7,12 +7,12 @@ class EventsController < ApplicationController
     @tomorrow = tomorrow
     @event = Event.new
     @events = Event.find_by_date(@date).order(:start_time)
-    @button_text = "Add Event"
+    @button_text = 'Add Event'
   end
 
   def new
     @event = Event.new
-    @button_text = "Add"
+    @button_text = 'Add'
   end
 
   def show
@@ -30,14 +30,14 @@ class EventsController < ApplicationController
     else
       @date = date(params[:event][:date])
       @events = Event.find_by_date(@date)
-      flash[:alert] = @event.errors.full_messages.uniq.join(", ")
+      flash[:alert] = @event.errors.full_messages.uniq.join(', ')
       render :index
     end
   end
 
   def edit
     @event = Event.find(params[:id])
-    @button_text = "Update"
+    @button_text = 'Update'
   end
 
   def update
@@ -45,7 +45,7 @@ class EventsController < ApplicationController
     if @event.update_attributes(event_params)
       redirect_to event_path @event
     else
-      flash[:alert] = @event.errors.full_messages.uniq.join(", ")
+      flash[:alert] = @event.errors.full_messages.uniq.join(', ')
       render :edit
     end
   end

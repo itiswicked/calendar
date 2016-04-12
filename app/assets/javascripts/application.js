@@ -40,8 +40,8 @@ var displayEditForm = function(element, default_path, quantity, id){
 };
 
 var displayQuantityAndButtons = function(element, event_id, resource_id, quantity){
-  var editUrl = "/events/" + event_id + "/resources/" + resource_id
-  var deleteUrl = "/api/resources/" + resource_id
+  var editUrl = "/events/" + event_id + "/resources/" + resource_id;
+  var deleteUrl = "/api/resources/" + resource_id;
   $($(element).parents()[3]).html(
     "<span>" + quantity + "</span>" +
     "<div class='resource-buttons'>" +
@@ -53,7 +53,7 @@ var displayQuantityAndButtons = function(element, event_id, resource_id, quantit
       "</a>" +
     "</div>"
   );
-}
+};
 
 var ResourceDeleteListener = function() {
   $(document).on('click', 'i.delete', function(event) {
@@ -71,7 +71,7 @@ var ResourceDeleteListener = function() {
     });
     return false;
   });
-}
+};
 
 var resourceEditListener = function() {
   $(document).on('click', 'a.resource-edit', function(event) {
@@ -84,7 +84,7 @@ var resourceEditListener = function() {
     hideEditButtonAndQuant(this);
     displayEditForm(cell, path_for_submit, value, id);
   });
-}
+};
 
 var resourceUpdateListener = function() {
   $(document).on('click', 'a.resource-update', function(event) {
@@ -107,14 +107,14 @@ var resourceUpdateListener = function() {
       }
     });
   });
-}
+};
 
 var continueButtonListener = function() {
   $(document).on('click', '.continue-button', function(event) {
     event.preventDefault();
     revealSignInForm();
-  })
-}
+  });
+};
 
 var revealSignInForm = function() {
   $('.splash-title')
@@ -129,14 +129,14 @@ var revealSignInForm = function() {
 
   $('.login-form')
     .animate({ marginTop: 0, opacity: 1 }, 'slow');
-}
+};
 
 var callAllListeners = function() {
   resourceEditListener();
   resourceUpdateListener();
   ResourceDeleteListener();
   continueButtonListener();
-}
+};
 
 $(document).ready(function() {
   callAllListeners();

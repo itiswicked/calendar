@@ -18,6 +18,7 @@ gem 'time_splitter'
 gem 'foundation-rails', '5.5.3.2'
 
 group :development do
+  gem 'rubocop'
   gem 'spring'
   gem 'web-console', '~> 2.0'
 end

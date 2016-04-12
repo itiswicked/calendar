@@ -20,3 +20,9 @@
 /tmp
 /coverage
 .env
+
+# ignore node_modules
+/node_modules
+
+# ignore js linter
+.eslintrc
