@@ -19699,6 +19699,10 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var _resource_category = __webpack_require__(160);
+
+	var _resource_category2 = _interopRequireDefault(_resource_category);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19720,35 +19724,26 @@
 	  }
 
 	  _createClass(EventResourceContainer, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      // get shit from server
-	      // get initial dropdow info
-	      // poll ONLY RESOURCE DATA
-	      this.getResourceInfoFromServer();
-	      // what_it_should_be = {
-	      //   categories: {
-	      //     sound: {
-	      //       optionsForSelect:  [1, "thing"] ,
-	      //       resources: [1, "light thing"]
-	      //     }
-	      //   }
-	      // };
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.getResourceAndFormInfo.bind(this);
+	      // this.interval = setInterval(this.getResourceAndFormInfo, this.state.pollInterval);
 	    }
 	  }, {
-	    key: 'getResourceInfoFromServer',
-	    value: function getResourceInfoFromServer() {
+	    key: 'getResourceAndFormInfo',
+	    value: function getResourceAndFormInfo() {
 	      var _this2 = this;
 
-	      var url = '/api' + this.props.event_url;
+	      debugger;
+	      var url = "/api" + this.props.event_url;
 	      $.ajax({
 	        url: url,
 	        method: 'GET',
-	        success: function success(response) {
-	          debugger;
+	        success: function success(responseData) {
+	          _this2.setState({ resources: responseData });
 	        },
 	        error: function error(xhr, status, err) {
-	          console.error(_this2.props.url, status, err.toString());
+	          console.error(url, status, err.toString());
 	        }
 	      });
 	    }
@@ -19756,10 +19751,19 @@
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'h1',
+	        'div',
 	        null,
-	        'Hello From Container!'
+	        _react2.default.createElement(_resource_category2.default, { resources: this.state.sound, category: 'Sound' }),
+	        _react2.default.createElement(_resource_category2.default, { resources: this.state.lighting, category: 'Lighting' }),
+	        _react2.default.createElement(_resource_category2.default, { resources: this.state.scenic, category: 'Scenic' }),
+	        _react2.default.createElement(_resource_category2.default, { resources: this.state.wardrobe, category: 'Wardrobe' }),
+	        _react2.default.createElement(_resource_category2.default, { resources: this.state.catering, category: 'Catering' })
 	      );
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      clearInterval(this.interval);
 	    }
 	  }]);
 
@@ -19767,6 +19771,60 @@
 	}(_react2.default.Component);
 
 	exports.default = EventResourceContainer;
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(158);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ResoureCategory = function (_React$Component) {
+	  _inherits(ResoureCategory, _React$Component);
+
+	  function ResoureCategory(props) {
+	    _classCallCheck(this, ResoureCategory);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ResoureCategory).call(this, props));
+	  }
+
+	  _createClass(ResoureCategory, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'h1',
+	        null,
+	        'Hello world from ',
+	        this.props.category
+	      );
+	    }
+	  }]);
+
+	  return ResoureCategory;
+	}(_react2.default.Component);
+
+	exports.default = ResoureCategory;
 
 /***/ }
 /******/ ]);

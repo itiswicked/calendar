@@ -46,7 +46,6 @@ feature 'user can create events' do
   end
 
   scenario 'unsuccessfully due to event start time occuring after event end time' do
-
     fill_in 'Title', with: 'Donor Banquet'
     fill_in 'Description', with: 'Lots o tables and chairs'
     fill_in 'Start Time', with: datetime
