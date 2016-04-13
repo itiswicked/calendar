@@ -4,7 +4,7 @@ import {render} from 'react-dom';
 
 import EventResourceContainer from './components/event_show/event_resource_container.jsx';
 
-ready(renderReactCompenents);
+ready(start);
 
 function ready(fn) {
   if (document.readyState != 'loading'){
@@ -14,9 +14,28 @@ function ready(fn) {
   }
 }
 
-function renderReactCompenents() {
+function start() {
+  getResourceDataFromServer();
+  setInterval(getResourceDataFromServer, 2000);
+}
+
+function renderReactComponents(data) {
   render(
-    <EventResourceContainer event_url={window.location.pathname} pollInterval={2000} />,
+    <EventResourceContainer data={data} />,
     document.getElementById('event-resources-container')
   );
+}
+
+function getResourceDataFromServer() {
+  var url = "/api" + window.location.pathname;
+  $.ajax({
+    url: url,
+    method: 'GET',
+    success: (responseData) => {
+      renderReactComponents(responseData);
+    },
+    error: (xhr, status, err) => {
+      console.error(url, status, err.toString());
+    }
+  });
 }

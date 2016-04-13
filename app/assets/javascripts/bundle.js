@@ -60,7 +60,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	ready(renderReactCompenents);
+	ready(start);
 
 	function ready(fn) {
 	  if (document.readyState != 'loading') {
@@ -70,8 +70,27 @@
 	  }
 	}
 
-	function renderReactCompenents() {
-	  (0, _reactDom.render)(_react2.default.createElement(_event_resource_container2.default, { event_url: window.location.pathname, pollInterval: 2000 }), document.getElementById('event-resources-container'));
+	function start() {
+	  getResourceDataFromServer();
+	  setInterval(getResourceDataFromServer, 2000);
+	}
+
+	function renderReactComponents(data) {
+	  (0, _reactDom.render)(_react2.default.createElement(_event_resource_container2.default, { data: data }), document.getElementById('event-resources-container'));
+	}
+
+	function getResourceDataFromServer() {
+	  var url = "/api" + window.location.pathname;
+	  $.ajax({
+	    url: url,
+	    method: 'GET',
+	    success: function success(responseData) {
+	      renderReactComponents(responseData);
+	    },
+	    error: function error(xhr, status, err) {
+	      console.error(url, status, err.toString());
+	    }
+	  });
 	}
 
 /***/ },
@@ -19719,51 +19738,22 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(EventResourceContainer).call(this, props));
 
-	    _this.state = {};
+	    _this.state = { resources: _this.props.data };
 	    return _this;
 	  }
 
 	  _createClass(EventResourceContainer, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      this.getResourceAndFormInfo.bind(this);
-	      // this.interval = setInterval(this.getResourceAndFormInfo, this.state.pollInterval);
-	    }
-	  }, {
-	    key: 'getResourceAndFormInfo',
-	    value: function getResourceAndFormInfo() {
-	      var _this2 = this;
-
-	      debugger;
-	      var url = "/api" + this.props.event_url;
-	      $.ajax({
-	        url: url,
-	        method: 'GET',
-	        success: function success(responseData) {
-	          _this2.setState({ resources: responseData });
-	        },
-	        error: function error(xhr, status, err) {
-	          console.error(url, status, err.toString());
-	        }
-	      });
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_resource_category2.default, { resources: this.state.sound, category: 'Sound' }),
-	        _react2.default.createElement(_resource_category2.default, { resources: this.state.lighting, category: 'Lighting' }),
-	        _react2.default.createElement(_resource_category2.default, { resources: this.state.scenic, category: 'Scenic' }),
-	        _react2.default.createElement(_resource_category2.default, { resources: this.state.wardrobe, category: 'Wardrobe' }),
-	        _react2.default.createElement(_resource_category2.default, { resources: this.state.catering, category: 'Catering' })
+	        _react2.default.createElement(_resource_category2.default, { resources: this.state.resources.sound, category: 'Sound' }),
+	        _react2.default.createElement(_resource_category2.default, { resources: this.state.resources.lighting, category: 'Lighting' }),
+	        _react2.default.createElement(_resource_category2.default, { resources: this.state.resources.scenic, category: 'Scenic' }),
+	        _react2.default.createElement(_resource_category2.default, { resources: this.state.resources.wardrobe, category: 'Wardrobe' }),
+	        _react2.default.createElement(_resource_category2.default, { resources: this.state.resources.catering, category: 'Catering' })
 	      );
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      clearInterval(this.interval);
 	    }
 	  }]);
 
@@ -19792,6 +19782,10 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var _resource = __webpack_require__(161);
+
+	var _resource2 = _interopRequireDefault(_resource);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19800,31 +19794,188 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var ResoureCategory = function (_React$Component) {
-	  _inherits(ResoureCategory, _React$Component);
+	var ResourceCategory = function (_React$Component) {
+	  _inherits(ResourceCategory, _React$Component);
 
-	  function ResoureCategory(props) {
-	    _classCallCheck(this, ResoureCategory);
+	  function ResourceCategory(props) {
+	    _classCallCheck(this, ResourceCategory);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ResoureCategory).call(this, props));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ResourceCategory).call(this, props));
+
+	    _this.state = {
+	      resources: [],
+	      options: []
+	    };
+	    return _this;
 	  }
 
-	  _createClass(ResoureCategory, [{
+	  _createClass(ResourceCategory, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps() {
+	      this.setState({
+	        resources: this.props.resources.resources,
+	        options: this.props.resources.options
+	      });
+	    }
+	  }, {
+	    key: 'resourceRows',
+	    value: function resourceRows() {
+	      return this.state.resources.map(function (resource) {
+	        return _react2.default.createElement(_resource2.default, { resource: resource, key: resource.id });
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Hello world from ',
-	        this.props.category
+	        'article',
+	        { className: 'resource-category' },
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          this.props.category
+	        ),
+	        _react2.default.createElement(
+	          'table',
+	          { className: 'resource-table' },
+	          _react2.default.createElement(
+	            'thead',
+	            null,
+	            _react2.default.createElement(
+	              'tr',
+	              null,
+	              _react2.default.createElement(
+	                'th',
+	                { className: 'resource-column' },
+	                'Resource'
+	              ),
+	              _react2.default.createElement(
+	                'th',
+	                { className: 'notes-column' },
+	                'Notes'
+	              ),
+	              _react2.default.createElement(
+	                'th',
+	                { className: 'quantity-column' },
+	                'Quantity'
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'tbody',
+	            null,
+	            this.resourceRows()
+	          )
+	        )
 	      );
 	    }
 	  }]);
 
-	  return ResoureCategory;
+	  return ResourceCategory;
 	}(_react2.default.Component);
 
-	exports.default = ResoureCategory;
+	exports.default = ResourceCategory;
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(158);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Resource = function (_React$Component) {
+	  _inherits(Resource, _React$Component);
+
+	  function Resource(props) {
+	    _classCallCheck(this, Resource);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Resource).call(this, props));
+
+	    _this.state = {};
+	    return _this;
+	  }
+
+	  _createClass(Resource, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.setState({ resource: this.props.resource });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'tr',
+	        { className: 'resource-row' },
+	        _react2.default.createElement(
+	          'td',
+	          { className: 'resource-column' },
+	          this.state.resource.name
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          { className: 'notes-column' },
+	          '-'
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          { className: 'quantity-column' },
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            this.state.resource.quantity
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'resource-buttons' },
+	            _react2.default.createElement(
+	              'a',
+	              { href: '#', className: 'resource-edit' },
+	              _react2.default.createElement(
+	                'i',
+	                { className: 'material-icons' },
+	                'create'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'a',
+	              { href: '#', className: 'resource-edit' },
+	              _react2.default.createElement(
+	                'i',
+	                { className: 'material-icons delete' },
+	                'clear'
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Resource;
+	}(_react2.default.Component);
+
+	exports.default = Resource;
 
 /***/ }
 /******/ ]);
