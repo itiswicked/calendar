@@ -31,8 +31,8 @@ var displayEditForm = function(element, default_path, quantity, id){
         "</div>" +
         "<div class='resource-update-quantity-field-submit-container'>" +
           "<a href='#'class='resource-update'>" +
-            "<i class='material-icons'>done<i>" +
-          "<a>" +
+            "<i class='material-icons'>done</i>" +
+          "</a>" +
         "</div>" +
       "</div>" +
     "</form>"
