@@ -3,17 +3,14 @@ import ReactDOM from 'react-dom';
 import {render} from 'react-dom';
 
 import Resource from './resource.jsx';
+import ResourceForm from './resource_form.jsx';
 
 export default class ResourceCategory extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      resources: [],
-      options: []
-    };
   }
 
-  componentWillReceiveProps() {
+  componentWillMount() {
     this.setState({
       resources: this.props.resources.resources,
       options: this.props.resources.options
@@ -42,6 +39,7 @@ export default class ResourceCategory extends React.Component {
             {this.resourceRows()}
           </tbody>
         </table>
+        <ResourceForm options={this.state.options} />
       </article>
     );
   }

@@ -12,17 +12,27 @@ class Api::EventsController < ApplicationController
   def resources_in(category)
     @resources ||= Resource.and_inventory_info(@event.id)
     @resources.select do |resource|
-      resource["category"] == category.to_s.capitalize
+      resource['category'] == category.to_s.capitalize
     end
   end
 
   def resources_with_dropdown_opts
     {
-      sound: { resources: resources_in(:sound), options: @options['Sound'] },
-      lighting: { resources: resources_in(:lighting), options: @options['Lighting'] },
-      scenic: { resources: resources_in(:scenic), options: @options['Scenic'] },
-      wardrobe: { resources: resources_in(:wardrobe), options: @options['Wardrobe'] },
-      catering: { resources: resources_in(:catering), options: @options['Catering'] }
+      sound: {
+        resources: resources_in(:sound), options: @options['Sound']
+      },
+      lighting: {
+        resources: resources_in(:lighting), options: @options['Lighting']
+      },
+      scenic: {
+        resources: resources_in(:scenic), options: @options['Scenic']
+      },
+      wardrobe: {
+        resources: resources_in(:wardrobe), options: @options['Wardrobe']
+      },
+      catering: {
+        resources: resources_in(:catering), options: @options['Catering']
+      }
     }
   end
 end

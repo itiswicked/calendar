@@ -60,8 +60,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	ready(start);
+	ready(renderReactComponents);
 
+	// Move AJAX back to where it was
+	// put if conditions in a render
+	// if state conditions are not met, reutnrn, else render component
 	function ready(fn) {
 	  if (document.readyState != 'loading') {
 	    fn();
@@ -70,27 +73,8 @@
 	  }
 	}
 
-	function start() {
-	  getResourceDataFromServer();
-	  setInterval(getResourceDataFromServer, 2000);
-	}
-
-	function renderReactComponents(data) {
-	  (0, _reactDom.render)(_react2.default.createElement(_event_resource_container2.default, { data: data }), document.getElementById('event-resources-container'));
-	}
-
-	function getResourceDataFromServer() {
-	  var url = "/api" + window.location.pathname;
-	  $.ajax({
-	    url: url,
-	    method: 'GET',
-	    success: function success(responseData) {
-	      renderReactComponents(responseData);
-	    },
-	    error: function error(xhr, status, err) {
-	      console.error(url, status, err.toString());
-	    }
-	  });
+	function renderReactComponents() {
+	  (0, _reactDom.render)(_react2.default.createElement(_event_resource_container2.default, { pollInterval: 2000 }), document.getElementById('event-resources-container'));
 	}
 
 /***/ },
@@ -19738,13 +19722,37 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(EventResourceContainer).call(this, props));
 
-	    _this.state = { resources: _this.props.data };
+	    _this.state = {};
 	    return _this;
 	  }
 
 	  _createClass(EventResourceContainer, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.getResourceData();
+	      this.interval = setInterval(this.getResourceData.bind(this), this.props.pollInterval);
+	    }
+	  }, {
+	    key: 'getResourceData',
+	    value: function getResourceData() {
+	      var _this2 = this;
+
+	      var url = "/api" + window.location.pathname;
+	      $.ajax({
+	        url: url,
+	        method: 'GET',
+	        success: function success(responseData) {
+	          _this2.setState({ resources: responseData });
+	        },
+	        error: function error(xhr, status, err) {
+	          console.error(url, status, err.toString());
+	        }
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      if (!this.state.resources) return _react2.default.createElement('div', null); // if there is no data to be displayed
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -19754,6 +19762,11 @@
 	        _react2.default.createElement(_resource_category2.default, { resources: this.state.resources.wardrobe, category: 'Wardrobe' }),
 	        _react2.default.createElement(_resource_category2.default, { resources: this.state.resources.catering, category: 'Catering' })
 	      );
+	    }
+	  }, {
+	    key: 'componentWilUnMount',
+	    value: function componentWilUnMount() {
+	      clearInterval(this.interval);
 	    }
 	  }]);
 
@@ -19786,6 +19799,10 @@
 
 	var _resource2 = _interopRequireDefault(_resource);
 
+	var _resource_form = __webpack_require__(162);
+
+	var _resource_form2 = _interopRequireDefault(_resource_form);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19800,18 +19817,12 @@
 	  function ResourceCategory(props) {
 	    _classCallCheck(this, ResourceCategory);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ResourceCategory).call(this, props));
-
-	    _this.state = {
-	      resources: [],
-	      options: []
-	    };
-	    return _this;
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ResourceCategory).call(this, props));
 	  }
 
 	  _createClass(ResourceCategory, [{
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps() {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
 	      this.setState({
 	        resources: this.props.resources.resources,
 	        options: this.props.resources.options
@@ -19866,7 +19877,8 @@
 	            null,
 	            this.resourceRows()
 	          )
-	        )
+	        ),
+	        _react2.default.createElement(_resource_form2.default, { options: this.state.options })
 	      );
 	    }
 	  }]);
@@ -19976,6 +19988,115 @@
 	}(_react2.default.Component);
 
 	exports.default = Resource;
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(158);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ResourceForm = function (_React$Component) {
+	  _inherits(ResourceForm, _React$Component);
+
+	  function ResourceForm(props) {
+	    _classCallCheck(this, ResourceForm);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ResourceForm).call(this, props));
+	  }
+
+	  _createClass(ResourceForm, [{
+	    key: 'options',
+	    value: function options() {
+	      return this.props.options.map(function (option) {
+	        return _react2.default.createElement(
+	          'option',
+	          { value: option[1] },
+	          option[0]
+	        );
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'form',
+	        { className: 'new_resource', id: 'new_resource' },
+	        _react2.default.createElement('input', { name: 'utf8', type: 'hidden', value: '✓' }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'small-6 columns resource-select' },
+	            _react2.default.createElement(
+	              'label',
+	              { htmlFor: 'resource_inventory_item_id' },
+	              'Resource'
+	            ),
+	            _react2.default.createElement(
+	              'select',
+	              {
+	                className: 'select-box',
+	                name: 'resource[inventory_item_id]',
+	                id: 'resource_inventory_item_id'
+	              },
+	              this.options()
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'small-6 columns' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'row' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'small-10 columns resource-quantity-field' },
+	                _react2.default.createElement(
+	                  'label',
+	                  { htmlFor: 'resource-quantity' },
+	                  'Quantity'
+	                ),
+	                _react2.default.createElement('input', { 'class': 'quantity-box', type: 'text', name: 'resource[quantity]', id: 'resource_quantity' })
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'small-2 columns' },
+	                _react2.default.createElement('input', { type: 'submit', name: 'commit', value: 'Add', className: 'button resource-add-button' })
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ResourceForm;
+	}(_react2.default.Component);
+
+	exports.default = ResourceForm;
 
 /***/ }
 /******/ ]);

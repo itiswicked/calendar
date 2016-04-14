@@ -4,8 +4,11 @@ import {render} from 'react-dom';
 
 import EventResourceContainer from './components/event_show/event_resource_container.jsx';
 
-ready(start);
+ready(renderReactComponents);
 
+// Move AJAX back to where it was
+// put if conditions in a render
+// if state conditions are not met, reutnrn, else render component
 function ready(fn) {
   if (document.readyState != 'loading'){
     fn();
@@ -14,28 +17,9 @@ function ready(fn) {
   }
 }
 
-function start() {
-  getResourceDataFromServer();
-  setInterval(getResourceDataFromServer, 2000);
-}
-
-function renderReactComponents(data) {
+function renderReactComponents() {
   render(
-    <EventResourceContainer data={data} />,
+    <EventResourceContainer pollInterval={2000} />,
     document.getElementById('event-resources-container')
   );
-}
-
-function getResourceDataFromServer() {
-  var url = "/api" + window.location.pathname;
-  $.ajax({
-    url: url,
-    method: 'GET',
-    success: (responseData) => {
-      renderReactComponents(responseData);
-    },
-    error: (xhr, status, err) => {
-      console.error(url, status, err.toString());
-    }
-  });
 }
